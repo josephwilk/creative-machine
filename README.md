@@ -1,5 +1,7 @@
 # Killer of Art
 
+##Defining Creativity
+
 Creativity has two categories: 
 * P-creativity (psychological) - individual comes up with an idea that they have never thought of before
 * H-creativity (historical)    - nobody else has ever come up with this idea before
@@ -17,3 +19,4 @@ Creativity:
 * [1] Computer Creativity http://www.golgotha.org.uk/academic/csmart02.html 
 * [2] Can Computers be Creative? How? http://aitopics.net/Creativity
 * [3] Formal Theory of Creativity & Fun & Intrinsic Motivation http://www.idsia.ch/~juergen/creativity.html
+* [4] Stephen Thaler's Computer Creativity Machine Simulates the Human Brain http://www.mindfully.org/Technology/2004/Creativity-Machine-Thaler24jan04.htm
