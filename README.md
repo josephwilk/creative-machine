@@ -20,3 +20,4 @@ Creativity:
 * [2] Can Computers be Creative? How? http://aitopics.net/Creativity
 * [3] Formal Theory of Creativity & Fun & Intrinsic Motivation http://www.idsia.ch/~juergen/creativity.html
 * [4] Stephen Thaler's Computer Creativity Machine Simulates the Human Brain http://www.mindfully.org/Technology/2004/Creativity-Machine-Thaler24jan04.htm
+* [5] Creativity and unpredictability by Margaret Boden http://www.stanford.edu/group/SHR/4-2/text/boden.html
