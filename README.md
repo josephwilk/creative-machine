@@ -13,7 +13,7 @@ Novelty:
 Creativity:
 > a creative idea is one that could not occur before.
 
-References:
+###References:
 * [1] Computer Creativity http://www.golgotha.org.uk/academic/csmart02.html 
 * [2] Can Computers be Creative? How? http://aitopics.net/Creativity
-* [3] If a Machine Creates Something Beautiful, Is It an Artist? http://www.nytimes.com/2003/01/25/arts/25TANK.html
+* [3] Formal Theory of Creativity & Fun & Intrinsic Motivation http://www.idsia.ch/~juergen/creativity.html
