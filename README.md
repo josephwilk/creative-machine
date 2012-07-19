@@ -1,4 +1,4 @@
-# Killer of Art
+# Creative Machine
 
 ##Defining Creativity
 
