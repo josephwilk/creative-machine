@@ -1,0 +1,2 @@
+module Machine
+end
