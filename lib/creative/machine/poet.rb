@@ -1,3 +1,5 @@
+require 'ruby_fann/neural_network'
+
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
 module Machine
@@ -40,8 +42,9 @@ module Machine
     end
     
     def randomly_generate_poem
-      poem_lines = Poem::WORDS_PER_LINE.map{|number_of_words| @lexicon.pick_words(number_of_words) }
-      Poem.new(poem_lines)
+      poem_lines = Limerick::LINES.times.map{|_| @lexicon.pick_words }
+
+      Limerick.new(poem_lines)
     end
   
     def find_rythming_words(words)
@@ -55,10 +58,7 @@ module Machine
     end
   end
   
-  
   class Poem
-    WORDS_PER_LINE = [5, 7, 5]
-    
     def initialize(lines)
       @lines = lines
     end
@@ -66,18 +66,32 @@ module Machine
     def to_s
       @lines.map{|line| line.join(" ")}.join("\n")
     end
+    
+    def to_ords
+      @lines.reduce([]){|words, line| words + line.map{|word| word.chars.to_a} }.flatten.map{|letter| letter.ord.to_f}
+    end
   end
   
   class Haiku < Poem
+    LINES = 3
     WORDS_PER_LINE = [5, 7, 5]
   end
   
   class Limerick < Poem
+    LINES = 5
     #Five lines. 
     #Third and fourth lines rhyme and share a fixed rhythm
+    #First, second and fifth share a rhyme and different fixed rhythm.
+    #5th line punch line,
   end
   
   class Evaluator
+    def initialize
+      @neural_network = RubyFann::Standard.new(:num_inputs => 5, 
+                                               :hidden_neurons => [2, 8, 4, 3, 4], 
+                                               :num_outputs => 1)
+    end
+    
     def survivors(population)
       score_poems(population).
       select{|(poem, score)| survivor?(poem, score) }.
@@ -86,7 +100,10 @@ module Machine
     
     private
     def score_poems(population)
-      population.map{|generation| [generation, 10] }
+      population.map do |generation|
+        score = @neural_network.run(generation.to_ords)
+        [generation, score]
+      end
     end
     
     def survivor?(poem, score)
