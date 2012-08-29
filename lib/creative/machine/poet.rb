@@ -84,7 +84,8 @@ module Machine
     #[word, word's stress, phonetic structure, syllables]
     
     def pick_words
-      10.times.map{|_| words.sample}
+      10.times.map{ |_| clean(words.sample) }.
+      reject{|word| word.empty?}
     end
     
     def words
@@ -93,6 +94,11 @@ module Machine
         poem_data = poem_data.split(" ").flatten
         poem_data
       end
+    end
+    
+    private
+    def clean(word)
+      word.gsub(/\|\/|"|\.|\!|\?|,|\)|\(/,'').downcase
     end
   end
 end
