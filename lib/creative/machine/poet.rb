@@ -55,6 +55,7 @@ module Machine
     end
   end
   
+  
   class Poem
     WORDS_PER_LINE = [5, 7, 5]
     
@@ -65,6 +66,15 @@ module Machine
     def to_s
       @lines.map{|line| line.join(" ")}.join("\n")
     end
+  end
+  
+  class Haiku < Poem
+    WORDS_PER_LINE = [5, 7, 5]
+  end
+  
+  class Limerick < Poem
+    #Five lines. 
+    #Third and fourth lines rhyme and share a fixed rhythm
   end
   
   class Evaluator
