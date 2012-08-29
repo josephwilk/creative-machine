@@ -40,11 +40,10 @@ module Machine
     end
     
     def randomly_generate_poem
-      poem_lines = 5.times.map{|_| @lexicon.pick_words }
-
+      poem_lines = [5,7,5].map{|number_of_words| @lexicon.pick_words(number_of_words) }
       Poem.new(poem_lines)
     end
-    
+  
     def find_rythming_words(words)
       words.map do |word| 
         Rhymer.rhyming_with(word) 
@@ -89,8 +88,8 @@ module Machine
   class Lexicon
     #[word, word's stress, phonetic structure, syllables]
     
-    def pick_words
-      10.times.map{ |_| clean(words.sample) }.
+    def pick_words(number_of_words = 10)
+      number_of_words.times.map{ |_| clean(words.sample) }.
       reject{|word| word.empty?}
     end
     
