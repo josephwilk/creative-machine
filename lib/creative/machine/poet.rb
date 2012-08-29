@@ -48,9 +48,6 @@ module Machine
     
     def find_rythming_words(words)
       words.map do |word| 
-        word = word.gsub(/\|\/|"|\.|\!|\?|,|\)|\(/,'').downcase
-        next if word.empty?
-        
         Rhymer.rhyming_with(word) 
       end
     end
