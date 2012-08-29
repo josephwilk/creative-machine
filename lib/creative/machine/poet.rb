@@ -17,7 +17,7 @@ module Machine
         @poems = mutation(@poems)
       end
       
-      @poems.map{|poem| poem.join " "}
+      @poems.map{|poem| poem.to_s}[0]
     end
     
     def mutation(poems)
@@ -40,10 +40,9 @@ module Machine
     end
     
     def randomly_generate_poem
-      words = @lexicon.pick_words
-      words = find_rythming_words(words)
-      words = find_correct_stress_pattern(words)
-      words
+      poem_lines = 5.times.map{|_| @lexicon.pick_words }
+
+      Poem.new(poem_lines)
     end
     
     def find_rythming_words(words)
@@ -54,6 +53,16 @@ module Machine
     
     def find_correct_stress_pattern(words)
       words
+    end
+  end
+  
+  class Poem
+    def initialize(lines)
+      @lines = lines
+    end
+    
+    def to_s
+      @lines.map{|line| line.join(" ")}.join("\n")
     end
   end
   
