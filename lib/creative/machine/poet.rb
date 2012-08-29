@@ -40,7 +40,7 @@ module Machine
     end
     
     def randomly_generate_poem
-      poem_lines = [5,7,5].map{|number_of_words| @lexicon.pick_words(number_of_words) }
+      poem_lines = Poem::WORDS_PER_LINE.map{|number_of_words| @lexicon.pick_words(number_of_words) }
       Poem.new(poem_lines)
     end
   
@@ -56,6 +56,8 @@ module Machine
   end
   
   class Poem
+    WORDS_PER_LINE = [5, 7, 5]
+    
     def initialize(lines)
       @lines = lines
     end
