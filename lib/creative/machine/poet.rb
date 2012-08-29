@@ -1,4 +1,5 @@
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
+module Creative
 module Machine
   class Poet
     POPULATION_SIZE = 100
@@ -46,7 +47,11 @@ module Machine
     end
     
     def find_rythming_words(words)
-      words
+      words.map do |word| 
+        word = word.gsub(/\|\/|"|\.|\!|\?|,|\)|\(/,'').downcase
+
+        Rhymer.rhyming_with(word)
+      end
     end
     
     def find_correct_stress_pattern(words)
@@ -90,7 +95,4 @@ module Machine
     end
   end
 end
-
-poet = Machine::Poet.new
-poems = poet.evolve()
-puts poems
+end
