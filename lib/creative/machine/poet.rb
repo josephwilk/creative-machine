@@ -36,7 +36,7 @@ module Machine
     
     private
     def randomly_generate_poems
-      POPULATION_SIZE.times.map{|n| randomly_generate_poem }
+      POPULATION_SIZE.times.map{|_| randomly_generate_poem }
     end
     
     def randomly_generate_poem
