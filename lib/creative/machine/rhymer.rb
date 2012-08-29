@@ -33,12 +33,11 @@ module Creative
         end
         
         def cached?(word)
-          @rythm_cache.has_key?(word) || File.exists?("#{CACHE_DIR}/#{word}")
+          (@rythm_cache||{}).has_key?(word) || File.exists?("#{CACHE_DIR}/#{word}")
         end
         
         def fetch_from_cache(word)
-          @rythm_cache ||= {}
-          if @rythm_cache.has_key?(word)
+          if (@rythm_cache||{}).has_key?(word)
             @rythm_cache[word]
           else
             data = File.read(File.dirname(__FILE__) + "/../../../data/rhythms/#{word}")
