@@ -1,0 +1,216 @@
+consonants: 
+  - character: p
+    example: pear
+    point: bilabial
+    manner: stop
+    voicing: voiceless
+    binary: 1000100100000
+  - character: b
+    example: bend
+    point: bilabial
+    manner: stop
+    voicing: voiced
+    binary:  1100100100000
+  - character: k
+    example: cat
+    point: velar
+    manner: stop
+    voicing: voiceless
+    binary: 1011100100000
+  - character: g 
+    example: glib
+    point: velar
+    manner: stop
+    voicing: voiced
+    binary: 1111100100000
+  - character: t
+    example: talk
+    point: alveolar
+    manner: stop
+    voicing: voiceless
+    binary:  1010000100000
+  - character: d
+    example: dab
+    point: alveolar
+    manner: stop
+    voicing: voiced
+    binary:  1110000100000
+  - character: h
+    example: hue
+    point: glottal
+    manner: fricative
+    voicing: voiceless
+    binary:  1000001000000
+  - character: s
+    example: star
+    point: alveolar
+    manner: fricative
+    voicing: voiceless
+    binary:  1010001000000
+  - character: z
+    example: zap
+    point: alveolar
+    manner: fricative
+    voicing: voiced
+    binary:  1110001000000
+  - character: sh
+    example: shard
+    point: palatal
+    manner: fricative
+    voicing: voicless
+    binary:  1010101000000
+  - character: zh
+    example: azure
+    point: palatal 
+    manner: fricative
+    voicing: voiced
+    binary:  1110101000000
+  - character: th
+    example: thicket
+    point: interdental
+    manner: fricative
+    voicing: voicless
+    binary:  1001101000000
+  - character: thh
+    example: though
+    point: interdental
+    manner: fricative
+    voicing: voiced
+    binary:  1101101000000
+  - character: f
+    example: face
+    point: labiodental
+    manner: fricative
+    voicing: voiceless
+    binary:  1001001000000    
+  - character: v
+    example: vine
+    point: labiodental
+    manner: fricative
+    voicing: voiced
+    binary:  1101001000000    
+  - character: ch
+    example: chase
+    point: palatal
+    manner: affricate
+    voicing: voiceless
+    binary:  1010101100000
+  - character: j
+    example: jazz
+    point: palatal
+    manner: affricate
+    voicing: voiced
+    binary:  1110101100000
+  - character: m
+    example: moan
+    point: bilabial
+    manner: nasal
+    binary:  1100110000000
+  - character: n
+    example: nimble
+    point: alveolar
+    manner: nasal
+    binary:  1110010000000
+  - character: ng
+    example: ankle
+    point: velar 
+    manner: nasal
+    binary:  1111110000000    
+  - character: l
+    example: learn
+    point: alveolar
+    manner: liquid
+    binary:  1110010100000
+  - character: r
+    example: wrist
+    point: palatal
+    manner: liquid
+    binary:  1110011100000
+  - character: y
+    example: yip
+    point: palatal
+    manner: glide
+    binary:  1110100000000
+  - character: w" 
+    example: with
+    point: velar
+    manner: glide
+    binary: 1100100000000
+  - character:  
+    example: nil 
+    point: nil
+    manner: nil 
+    voicing: nil 
+    binary: 1000000000000
+
+vowels:
+  - character: ee
+    example: eat
+    height: high
+    depth: front
+    binary: 0000000000101  
+  - character: ih
+    example: if
+    height: low-high
+    depth: front
+    binary: 0000000001001  
+  - character: uw
+    example: foo
+    height: high
+    depth: back
+    binary: 0000000000111  
+  - character: oo
+    example: wood
+    height: low-high
+    depth: back
+    binary: 0000000001011  
+  - character: ay
+    example: ape
+    height: mid
+    depth: front
+    binary: 0000000001101  
+  - character: eh
+    example: egg
+    height: low-mid
+    depth: front
+    binary: 0000000010001  
+  - character: uh
+    example: ugly
+    height: mid
+    depth: central
+    binary: 0000000010010  
+  - character: oh
+    example: only
+    height: mid
+    depth: back
+    binary: 0000000001111  
+  - character: au
+    example: awning
+    height: low-mid
+    depth: back
+    binary: 0000000010011  
+  - character: ae
+    example: nil
+    height: low
+    depth: front
+    binary: 0000000010101  
+  - character: ah
+    example: oblong
+    height: low
+    depth: back
+    binary: 0000000010111  
+  - character: ai
+    example: nil
+    height: diphthong
+    depth: diphthong
+    binary: 0000000011100  
+  - character: oy
+    example: nil
+    height: diphthong
+    depth: diphthong
+    binary: 0000000011101  
+  - character: ao
+    example: nil
+    height: diphthong
+    depth: diphthong
+    binary: 0000000011110
