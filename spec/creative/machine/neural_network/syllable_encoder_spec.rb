@@ -11,6 +11,7 @@ module NeuralNetwork
         input = SyllableEncoder.encode('wa')
       
         input.should have(77).bits
+        (input - [0] - [1]).should be_empty
       end
       
       it "should encode the syllable somehow..."
