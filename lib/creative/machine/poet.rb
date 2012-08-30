@@ -66,10 +66,6 @@ module Machine
     def to_s
       @lines.map{|line| line.join(" ")}.join("\n")
     end
-    
-    def to_ords
-      @lines.reduce([]){|words, line| words + line.map{|word| word.chars.to_a} }.flatten.map{|letter| letter.ord.to_f}
-    end
   end
   
   class Haiku < Poem
@@ -87,9 +83,9 @@ module Machine
   
   class Evaluator
     def initialize
-      @neural_network = RubyFann::Standard.new(:num_inputs => 5, 
+      @neural_network = RubyFann::Standard.new(:num_inputs => 77, 
                                                :hidden_neurons => [2, 8, 4, 3, 4], 
-                                               :num_outputs => 1)
+                                               :num_outputs => 7)
     end
     
     def survivors(population)
@@ -100,8 +96,10 @@ module Machine
     
     private
     def score_poems(population)
-      population.map do |generation|
-        score = @neural_network.run(generation.to_ords)
+      population.map do |poem|
+        inputs = NeuralNetworkInputFormatter.convert(poem)
+        score = @neural_network.run(inputs)
+
         [generation, score]
       end
     end
