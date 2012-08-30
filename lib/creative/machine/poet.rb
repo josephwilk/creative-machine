@@ -63,6 +63,11 @@ module Machine
       @lines = lines
     end
     
+    def syllables
+      #TODO: extract syllables
+      @lines.join().split
+    end
+    
     def to_s
       @lines.map{|line| line.join(" ")}.join("\n")
     end
@@ -85,7 +90,7 @@ module Machine
     def initialize
       @neural_network = RubyFann::Standard.new(:num_inputs => 77, 
                                                :hidden_neurons => [2, 8, 4, 3, 4], 
-                                               :num_outputs => 7)
+                                               :num_outputs => 1)
     end
     
     def survivors(population)
@@ -97,10 +102,10 @@ module Machine
     private
     def score_poems(population)
       population.map do |poem|
-        inputs = NeuralNetworkInputFormatter.convert(poem)
-        score = @neural_network.run(inputs)
+        inputs = NeuralNetwork::InputEncoder.convert(poem)
+        score = inputs.reduce(0){|score, input| score += @neural_network.run(input)[0]}
 
-        [generation, score]
+        [poem, score]
       end
     end
     
