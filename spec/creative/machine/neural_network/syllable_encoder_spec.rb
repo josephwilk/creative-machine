@@ -8,7 +8,7 @@ module NeuralNetwork
     describe ".encode" do
     
       it "should return 77 bit binary number" do
-        input = SyllableEncoder.encode('wa')
+        input = SyllableEncoder.encode('wa', 1)
       
         input.should have(77).bits
         (input - [0] - [1]).should be_empty

@@ -5,13 +5,25 @@ module Creative
       class SyllableEncoder
         VOWELS = %W{a e i o u}
         CONSONANTS = ('a'..'z').to_a - VOWELS
-             
+
         class << self
-          def encode(syllable)
-            [1] * 77
+
+          def encode(syllable, word_index_within_lexicon)
+            ([1] * 66) + to_binary(word_index_within_lexicon)
           end
         
           private
+        
+          def to_binary(integer)
+            zero_pad(integer.to_s(2)).
+            split('').
+            map{|x| x.to_i}
+          end
+        
+          def zero_pad(input)
+          	pad_length = 11 - input.length
+          	"0" * pad_length + input
+          end
         
           def encode_consonant(constant)
             code = CONSONANTS.index(constant)
@@ -22,6 +34,7 @@ module Creative
             code = VOWELS.index(vowel)
             code.to_s(2)
           end
+        
         end
       end
 
