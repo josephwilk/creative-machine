@@ -6,6 +6,8 @@ module Creative
         VOWELS = %W{a e i o u}
         CONSONANTS = ('a'..'z').to_a - VOWELS
 
+        BITS_FOR_LEXICON_INDEX = 11
+
         class << self
 
           def encode(syllable, word_index_within_lexicon)
@@ -21,7 +23,7 @@ module Creative
           end
         
           def zero_pad(input)
-          	pad_length = 11 - input.length
+          	pad_length = BITS_FOR_LEXICON_INDEX - input.length
           	"0" * pad_length + input
           end
         
