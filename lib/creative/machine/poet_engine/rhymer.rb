@@ -6,7 +6,7 @@ module Creative
     module PoetEngine
       class Rhymer
         URL = "http://www.rhymezone.com/r/rhyme.cgi?typeofrhyme=perfect&org1=syl&org2=l&org3=y"
-        CACHE_DIR = File.dirname(__FILE__) + "/../../../data/rhythms"
+        CACHE_DIR = File.expand_path(File.dirname(__FILE__)) + "/../../../../data/rhythms"
 
         class << self
           def rhyming_with(word)
@@ -41,7 +41,7 @@ module Creative
             if (@rythm_cache||{}).has_key?(word)
               @rythm_cache[word]
             else
-              data = File.read(File.dirname(__FILE__) + "/../../../data/rhythms/#{word}")
+              data = File.read("#{CACHE_DIR}/#{word}")
               return data.split(",")
             end
           end

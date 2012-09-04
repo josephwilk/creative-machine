@@ -1,1 +1,3 @@
-require File.dirname(__FILE__) + '/../lib/creative_machine'
+$:.unshift(File.dirname(__FILE__) + '/lib') unless $:.include?(File.dirname(__FILE__) + '/lib')
+
+require 'creative_machine'
