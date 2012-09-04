@@ -5,6 +5,4 @@ module Creative
   end
 end
 
-require 'creative/machine/neural_network'
 require 'creative/machine/poet'
-require 'creative/machine/rhymer'

@@ -1,4 +1,7 @@
 require 'ruby_fann/neural_network'
+require 'creative/machine/poet_engine/neural_network'
+require 'creative/machine/poet_engine/rhymer'
+
 
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
@@ -102,7 +105,7 @@ module Machine
     private
     def score_poems(population)
       population.map do |poem|
-        inputs = NeuralNetwork::InputEncoder.convert(poem)
+        inputs = PoetEngine::NeuralNetwork::InputEncoder.convert(poem)
         score = inputs.reduce(0){|score, input| score += @neural_network.run(input)[0]}
 
         [poem, score]

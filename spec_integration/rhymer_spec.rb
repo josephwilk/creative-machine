@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Creative
 module Machine
+module PoetEngine
 
   describe Rhymer do
     it "should find rhyming words" do
@@ -9,5 +10,6 @@ module Machine
     end    
   end
 
+end
 end
 end

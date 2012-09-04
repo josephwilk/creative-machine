@@ -2,7 +2,9 @@ require 'spec_helper'
 
 module Creative
 module Machine
+module PoetEngine
 module NeuralNetwork
+
   
   describe SyllableEncoder do
     describe ".encode" do
@@ -20,5 +22,6 @@ module NeuralNetwork
   end
 
 end  
+end
 end
 end
