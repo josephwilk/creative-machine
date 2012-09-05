@@ -3,34 +3,38 @@ require 'open-uri'
 require 'json'
 
 module Lexicon
-  def self.haiku_words
-    words = File.read(File.dirname(__FILE__) + '/../data/haiku.txt')
-    words = words.split(' ').
-                  reject {|word| word =~ /-|--/}.
-                  map{|word| word.downcase}.
-                  map{|word| word.gsub(/[^\w\d]/, '')}
+  class << self
+    def haiku_words
+      words = File.read(File.dirname(__FILE__) + '/../data/haiku.txt')
+      words = words.split(' ').
+                    reject {|word| word =~ /-|--/}.
+                    map{|word| word.downcase}.
+                    map{|word| word.gsub(/[^\w\d]/, '')}
 
-    words[0..10]
-  end
-  
-  
-  def self.how_do_i_pronounce(word)
-    @pronouncation_dictionary ||= build_pronuciation_dictionary
-    @pronouncation_dictionary[word]
-  end
-  
-  def build_pronuciation_dictionary
-    dictionary = {}
-    
-    File.open(File.dirname(__FILE__) + '/../data/cmudict/cmudict.0.7a') do |f|
-      f.readlines.each do |line|
-        word, *pron = line.strip.split(' ')
-        next unless word && !word.empty? && !word[/[^A-Z]+/]
-        dictionary[word.downcase] = pron
-      end
+      words[0..10]
     end
+  
+  
+    def how_do_i_pronounce(word)
+      @pronouncation_dictionary ||= build_pronuciation_dictionary
+      @pronouncation_dictionary[word]
+    end
+
+    private
+  
+    def build_pronuciation_dictionary
+      dictionary = {}
+    
+      File.open(File.dirname(__FILE__) + '/../data/cmudict/cmudict.0.7a') do |f|
+        f.readlines.each do |line|
+          word, *pron = line.strip.split(' ')
+          next unless word && !word.empty? && !word[/[^A-Z]+/]
+          dictionary[word.downcase] = pron
+        end
+      end
       
-    dictionary
+      dictionary
+    end
   end
   
 end
