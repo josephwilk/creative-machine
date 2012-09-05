@@ -14,20 +14,23 @@ module Lexicon
   end
   
   
-  def self.pronouncation_dictionary
-    @pronouncation_dictionary ||= begin
-      dictionary = {}
+  def self.how_do_i_pronounce(word)
+    @pronouncation_dictionary ||= build_pronuciation_dictionary
+    @pronouncation_dictionary[word]
+  end
+  
+  def build_pronuciation_dictionary
+    dictionary = {}
     
-      File.open(File.dirname(__FILE__) + '/../data/cmudict/cmudict.0.7a') do |f|
-        f.readlines.each do |line|
-          word, *pron = line.strip.split(' ')
-          next unless word && !word.empty? && !word[/[^A-Z]+/]
-          dictionary[word.downcase] = pron
-        end
+    File.open(File.dirname(__FILE__) + '/../data/cmudict/cmudict.0.7a') do |f|
+      f.readlines.each do |line|
+        word, *pron = line.strip.split(' ')
+        next unless word && !word.empty? && !word[/[^A-Z]+/]
+        dictionary[word.downcase] = pron
       end
-      
-      dictionary
     end
+      
+    dictionary
   end
   
 end
@@ -54,7 +57,7 @@ namespace :lexicon do
                            map{|a| a.text}.
                            reject{|w| w =~ /,|;/}
 
-      phonemes = Lexicon.pronouncation_dictionary[word]
+      phonemes = Lexicon.how_do_i_pronounce[word]
 
       {:word => word,
        :syllables => word_with_syllables_seperated,
