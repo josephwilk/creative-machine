@@ -82,6 +82,8 @@ module Machine
   end
   
   class Limerick < Poem
+    SOURCE_WORDS_FILE = File.dirname(__FILE__) + "/../../../data/poems.txt"
+    
     LINES = 5
     #Five lines. 
     #Third and fourth lines rhyme and share a fixed rhythm
@@ -130,7 +132,7 @@ module Machine
     
     def words
       @words ||= begin
-        poem_data = File.read(File.dirname(__FILE__) + "/../../../data/poems.txt")
+        poem_data = File.read(Limerick::SOURCE_WORDS_FILE)
         poem_data = poem_data.split(" ").flatten
         poem_data
       end
