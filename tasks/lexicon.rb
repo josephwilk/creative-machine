@@ -57,7 +57,7 @@ namespace :lexicon do
                            map{|a| a.text}.
                            reject{|w| w =~ /,|;/}
 
-      phonemes = Lexicon.how_do_i_pronounce[word]
+      phonemes = Lexicon.how_do_i_pronounce(word)
 
       {:word => word,
        :syllables => word_with_syllables_seperated,
