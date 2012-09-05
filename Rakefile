@@ -13,4 +13,6 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.rcov_opts =  %[-Ilib -Ispec  --sort coverage --aggregate coverage.data]
 end
 
+Dir[File.dirname(__FILE__) + '/tasks/*.rb'].each {|task| require task }
+
 task :default => [:spec, :spec_integration]
