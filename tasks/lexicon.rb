@@ -11,7 +11,7 @@ module Lexicon
                     map{|word| word.downcase}.
                     map{|word| word.gsub(/[^\w\d]/, '')}
 
-      words[0..10]
+      words
     end
   
   
@@ -52,10 +52,17 @@ namespace :lexicon do
   task :build => [:download_cmu] do
     URL = 'http://dictionary.reference.com/browse'
 
+    File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w') do |f|
+      
+    
+
     word_data = Lexicon.haiku_words.map do |word|
+      begin
       doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
 
-      word_with_syllables_seperated = doc.xpath('//h2[@class="me"]').first.text
+      nodes = doc.xpath('//h2[@class="me"]')
+      next unless nodes && nodes.first
+      word_with_syllables_seperated = nodes.first.text
     
       pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
                            map{|a| a.text}.
@@ -63,14 +70,18 @@ namespace :lexicon do
 
       phonemes = Lexicon.how_do_i_pronounce(word)
 
-      {:word => word,
+      x = {:word => word,
        :syllables => word_with_syllables_seperated,
        :pronouncations => pronouncations,
        :phonemes => phonemes}
+       
+       f.write(x.to_json + "\n")
+       f.flush
+       
+     rescue
+     end
     end
     
-    File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w') do |f|
-      f.write(word_data.to_json)
     end
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
