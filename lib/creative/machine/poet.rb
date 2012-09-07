@@ -1,7 +1,7 @@
 require 'ruby_fann/neural_network'
 require 'creative/machine/poet_engine/neural_network'
 require 'creative/machine/poet_engine/rhymer'
-
+require 'json'
 
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
@@ -45,7 +45,7 @@ module Machine
     end
     
     def randomly_generate_poem
-      poem_lines = Haiku::LINES.times.map{|_| @lexicon.pick_words }
+      poem_lines = Haiku::LINES.times.map{|index| @lexicon.pick_words(Haiku::SYLLABLES_PER_LINE[index]) }
 
       Haiku.new(poem_lines)
     end
@@ -80,7 +80,7 @@ module Machine
     SOURCE_WORDS_FILE = File.dirname(__FILE__) + "/../../../data/haiku.txt"
     
     LINES = 3
-    WORDS_PER_LINE = [5, 7, 5]
+    SYLLABLES_PER_LINE = [5, 7, 5]
   end
   
   class Limerick < Poem
@@ -125,9 +125,33 @@ module Machine
   end
   
   class Lexicon
+    def self.lookup(word)
+      @data ||= JSON.parse(File.read(File.dirname(__FILE__) + '/../../../data/lookup_dictionary.json'))
+      @data['word']
+    end
+
+    def self.no_syllables_in(word)
+      @data ||= JSON.parse(File.read(File.dirname(__FILE__) + '/../../../data/lookup_dictionary.json'))
+      if @data[word]
+        @data[word]['syllables'].split("-").count
+      end
+    end
+    
     def pick_words(total_syllables = 10)
-      total_syllables.times.map{ |_| clean(words.sample) }.
-      reject{|word| word.empty?}
+      poem_words = []
+      while total_syllables > 0
+        word = clean(words.sample)
+        next unless word
+
+        syllable_count = Lexicon.no_syllables_in(word)
+        next unless syllable_count
+
+        if (total_syllables - Lexicon.no_syllables_in(word)) >= 0
+          poem_words << word
+          total_syllables = total_syllables - Lexicon.no_syllables_in(word)
+        end
+      end
+      poem_words
     end
     
     def words
@@ -140,6 +164,7 @@ module Machine
     
     private
     def clean(word)
+      return word unless word
       word.gsub(/\|\/|"|\.|\!|\?|,|\)|\(/,'').downcase
     end
   end
