@@ -4,6 +4,8 @@ require 'json'
 
 module Lexicon
   class << self
+    URL = 'http://dictionary.reference.com/browse'
+    
     def haiku_words
       words = File.read(File.dirname(__FILE__) + '/../data/haiku.txt')
       words = words.split(' ').
@@ -14,13 +16,34 @@ module Lexicon
       words
     end
   
-  
+    def lookup_word(word)
+      doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
+
+      nodes = doc.xpath('//h2[@class="me"]')
+      return unless nodes && nodes.first
+      word_with_syllables_seperated = nodes.first.text
+    
+      pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
+                           map{|a| a.text}.
+                           reject{|w| w =~ /,|;/}
+
+      phonemes = Lexicon.how_do_i_pronounce(word)
+      
+      {:word => word,
+       :syllables => word_with_syllables_seperated,
+       :pronouncations => pronouncations,
+       :phonemes => phonemes}
+    rescue
+      puts "#{word} lookup failed: #{$!}"
+      nil
+    end
+
+    private
+
     def how_do_i_pronounce(word)
       @pronouncation_dictionary ||= build_pronuciation_dictionary
       @pronouncation_dictionary[word]
     end
-
-    private
   
     def build_pronuciation_dictionary
       dictionary = {}
@@ -50,39 +73,20 @@ namespace :lexicon do
   
   desc "map words to syllables/pronuciation/emphasis"
   task :build => [:download_cmu] do
-    URL = 'http://dictionary.reference.com/browse'
-
-    File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w') do |error_log|
-      File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w') do |word_log|
-        word_data = Lexicon.haiku_words.map do |word|
-        begin
-          doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
-
-          nodes = doc.xpath('//h2[@class="me"]')
-          next unless nodes && nodes.first
-          word_with_syllables_seperated = nodes.first.text
-    
-          pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
-                               map{|a| a.text}.
-                               reject{|w| w =~ /,|;/}
-
-          phonemes = Lexicon.how_do_i_pronounce(word)
-
-          data = {:word => word,
-                  :syllables => word_with_syllables_seperated,
-                  :pronouncations => pronouncations,
-                  :phonemes => phonemes}
-
-          file_to_log = !phonemes ? error_log : word_log
-          file_to_log.write(data.to_json + "\n")
-          file_to_log.flush          
-         rescue
-           puts "#{word} lookup failed: #{$!}"
-         end
-        end
-      end
+    error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
+    word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
+    Lexicon.haiku_words.each do |word|
+      data = Lexicon.look_up(word)
+      next unless data
+      file_to_log = !data[:phonemes] ? error_log : word_log
+      file_to_log.write(data.to_json + "\n")
+      file_to_log.flush          
     end
+    
+    word_log.close
+    error_log.close
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
   end
+  
 end
