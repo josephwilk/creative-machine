@@ -7,7 +7,7 @@ require 'json'
 module Creative
 module Machine
   class Poet
-    POPULATION_SIZE = 100
+    POPULATION_SIZE = 1000
     
     def initialize
       @lexicon = Lexicon.new
@@ -22,7 +22,7 @@ module Machine
         @poems = mutation(@poems)
       end
       
-      @poems.map{|poem| poem.to_s}[0]
+      @poems.map{|poem| poem.to_s}
     end
     
     def mutation(poems)
@@ -127,13 +127,13 @@ module Machine
   class Lexicon
     def self.lookup(word)
       @data ||= JSON.parse(File.read(File.dirname(__FILE__) + '/../../../data/lookup_dictionary.json'))
-      @data['word']
+      @data[word]
     end
 
     def self.no_syllables_in(word)
-      @data ||= JSON.parse(File.read(File.dirname(__FILE__) + '/../../../data/lookup_dictionary.json'))
-      if @data[word]
-        @data[word]['syllables'].split("-").count
+      word_data = Lexicon.lookup(word)
+      if word_data
+        word_data['syllables'].split("-").count
       end
     end
     
