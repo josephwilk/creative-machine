@@ -72,7 +72,7 @@ namespace :lexicon do
   end
   
   desc "map words to syllables/pronuciation/emphasis"
-  task :build => [:download_cmu] do
+  task :build => [:download_cmu, :format_lookup] do
     error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
     word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
     Lexicon.haiku_words.each do |word|
@@ -87,6 +87,21 @@ namespace :lexicon do
     error_log.close
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
+  end
+  
+  desc "format json line segments into a single json hash"
+  task :format_lookup do
+    data = File.read(File.dirname(__FILE__) + '/../tmp/lookup.json')
+    lines = data.split("\n")
+    result = lines.reduce({}) do |result, line|
+      word_data = JSON.parse(line)
+      word = word_data.delete('word')
+      result[word] = word_data
+      result
+    end
+    File.open(File.dirname(__FILE__) + '/../data/lookup_dictionary.json', 'w') do |f|
+      f.write(result.to_json)
+    end
   end
   
 end
