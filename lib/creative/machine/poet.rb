@@ -45,9 +45,9 @@ module Machine
     end
     
     def randomly_generate_poem
-      poem_lines = Limerick::LINES.times.map{|_| @lexicon.pick_words }
+      poem_lines = Haiku::LINES.times.map{|_| @lexicon.pick_words }
 
-      Limerick.new(poem_lines)
+      Haiku.new(poem_lines)
     end
   
     def find_rythming_words(words)
@@ -77,6 +77,8 @@ module Machine
   end
   
   class Haiku < Poem
+    SOURCE_WORDS_FILE = File.dirname(__FILE__) + "/../../../data/haiku.txt"
+    
     LINES = 3
     WORDS_PER_LINE = [5, 7, 5]
   end
@@ -123,16 +125,14 @@ module Machine
   end
   
   class Lexicon
-    #[word, word's stress, phonetic structure, syllables]
-    
-    def pick_words(number_of_words = 10)
-      number_of_words.times.map{ |_| clean(words.sample) }.
+    def pick_words(total_syllables = 10)
+      total_syllables.times.map{ |_| clean(words.sample) }.
       reject{|word| word.empty?}
     end
     
     def words
       @words ||= begin
-        poem_data = File.read(Limerick::SOURCE_WORDS_FILE)
+        poem_data = File.read(Haiku::SOURCE_WORDS_FILE)
         poem_data = poem_data.split(" ").flatten
         poem_data
       end
