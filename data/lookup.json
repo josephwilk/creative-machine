@@ -946,10 +946,10 @@
 {"word":"stuck","syllables":"stuck","pronouncations":["stuhk","stik","stik"],"phonemes":["S","T","AH1","K"]}
 {"word":"such","syllables":"such","pronouncations":["suhch"],"phonemes":["S","AH1","CH"]}
 {"word":"sudden","syllables":"sud·den","pronouncations":["suhd-n"],"phonemes":["S","AH1","D","AH0","N"]}
-{"word":"suddenly","syllables":"sud·den","pronouncations":["suhd-n"],"phonemes":["S","AH1","D","AH0","N","L","IY0"]}
-{"word":"suggests","syllables":"sug·gest","pronouncations":["suhg-jest","suh-"],"phonemes":["S","AH0","G","JH","EH1","S","T","S"]}
+{"word":"suddenly","syllables":"sud·den·ly","pronouncations":["suhd-n"],"phonemes":["S","AH1","D","AH0","N","L","IY0"]}
+{"word":"suggests","syllables":"sug·gests","pronouncations":["suhg-jest","suh-"],"phonemes":["S","AH0","G","JH","EH1","S","T","S"]}
 {"word":"summer","syllables":"sum·mer","pronouncations":["suhm-er","suhm-er"],"phonemes":["S","AH1","M","ER0"]}
-{"word":"summers","syllables":"sum·mer","pronouncations":["suhm-er","suhm-er"],"phonemes":["S","AH1","M","ER0","Z"]}
+{"word":"summers","syllables":"sum·mers","pronouncations":["suhm-er","suhm-er"],"phonemes":["S","AH1","M","ER0","Z"]}
 {"word":"sun","syllables":"sun","pronouncations":["suhn"],"phonemes":["S","AH1","N"]}
 {"word":"sunk","syllables":"sunk","pronouncations":["suhngk","singk"],"phonemes":["S","AH1","NG","K"]}
 {"word":"sunlight","syllables":"sun·light","pronouncations":["suhn-lahyt"],"phonemes":["S","AH1","N","L","AY2","T"]}
@@ -1113,6 +1113,7 @@
 {"word":"way","syllables":"way","pronouncations":["wey","wey"],"phonemes":["W","EY1"]}
 {"word":"wayside","syllables":"way·side","pronouncations":["wey-sahyd"],"phonemes":["W","EY1","S","AY2","D"]}
 {"word":"we","syllables":"we","pronouncations":["wee","ahy"],"phonemes":["W","IY1"]}
+{"word":"we've","syllables":"we've","pronouncations":["weev"],"phonemes":["W", "IY1", "V"]}
 {"word":"weary","syllables":"wea·ry","pronouncations":["weer-ee"],"phonemes":["W","IH1","R","IY0"]}
 {"word":"weather","syllables":"weath·er","pronouncations":["weth-er"],"phonemes":["W","EH1","DH","ER0"]}
 {"word":"weathered","syllables":"weath·ered","pronouncations":["weth-erd","weth-er"],"phonemes":["W","EH1","DH","ER0","D"]}
@@ -1120,7 +1121,6 @@
 {"word":"well","syllables":"well","pronouncations":["wel","wel","weel","wil"],"phonemes":["W","EH1","L"]}
 {"word":"were","syllables":"were","pronouncations":["wur","wer","wair","weer","bee","bee","bi"],"phonemes":["W","ER0"]}
 {"word":"wet","syllables":"wet","pronouncations":["wet"],"phonemes":["W","EH1","T"]}
-{"word":"we've","syllables":"we've","pronouncations":["weev"],"phonemes":["W", "IY1", "V"]}
 {"word":"what","syllables":"what","pronouncations":["hwuht","hwot","wuht","wot","hwuht","wuht","hwuhts","hwots","wuhts","wots","hwuhts","wuhts"],"phonemes":["W","AH1","T"]}
 {"word":"when","syllables":"when","pronouncations":["hwen","wen","hwuhn","wuhn","hwenz","wenz"],"phonemes":["W","EH1","N"]}
 {"word":"where","syllables":"where","pronouncations":["hwair","wair","hwairz","wairz"],"phonemes":["W","EH1","R"]}
