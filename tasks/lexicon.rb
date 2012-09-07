@@ -52,36 +52,35 @@ namespace :lexicon do
   task :build => [:download_cmu] do
     URL = 'http://dictionary.reference.com/browse'
 
-    File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w') do |f|
-      
+    File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w') do |error_log|
+      File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w') do |word_log|
+        word_data = Lexicon.haiku_words.map do |word|
+        begin
+          doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
+
+          nodes = doc.xpath('//h2[@class="me"]')
+          next unless nodes && nodes.first
+          word_with_syllables_seperated = nodes.first.text
     
+          pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
+                               map{|a| a.text}.
+                               reject{|w| w =~ /,|;/}
 
-    word_data = Lexicon.haiku_words.map do |word|
-      begin
-      doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
+          phonemes = Lexicon.how_do_i_pronounce(word)
 
-      nodes = doc.xpath('//h2[@class="me"]')
-      next unless nodes && nodes.first
-      word_with_syllables_seperated = nodes.first.text
-    
-      pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
-                           map{|a| a.text}.
-                           reject{|w| w =~ /,|;/}
+          data = {:word => word,
+                  :syllables => word_with_syllables_seperated,
+                  :pronouncations => pronouncations,
+                  :phonemes => phonemes}
 
-      phonemes = Lexicon.how_do_i_pronounce(word)
-
-      x = {:word => word,
-       :syllables => word_with_syllables_seperated,
-       :pronouncations => pronouncations,
-       :phonemes => phonemes}
-       
-       f.write(x.to_json + "\n")
-       f.flush
-       
-     rescue
-     end
-    end
-    
+          file_to_log = !phonemes ? error_log : word_log
+          file_to_log.write(data.to_json + "\n")
+          file_to_log.flush          
+         rescue
+           puts "#{word} lookup failed: #{$!}"
+         end
+        end
+      end
     end
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
