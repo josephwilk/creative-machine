@@ -125,7 +125,7 @@ module Machine
   end
   
   class Lexicon
-    def self.invalid_double?(current_word, new_word)
+    def self.invalid_double_particles?(current_word, new_word)
       invalid_particles = ['to', 'a', 'the', 'in']
 
       if current_word == new_word && invalid_particles.include?(new_word)
@@ -156,7 +156,7 @@ module Machine
         syllable_count = Lexicon.no_syllables_in(word)
         next unless syllable_count
 
-        if ((total_syllables - Lexicon.no_syllables_in(word)) >= 0) && !Lexicon.invalid_double?(poem_words[-1], word)
+        if ((total_syllables - Lexicon.no_syllables_in(word)) >= 0) && !Lexicon.invalid_double_particles?(poem_words[-1], word)
           poem_words << word
           total_syllables = total_syllables - Lexicon.no_syllables_in(word)
         end
