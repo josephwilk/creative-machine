@@ -74,6 +74,7 @@ namespace :lexicon do
   desc "map words to syllables/pronuciation/emphasis"
   task :build => [:download_cmu, :format_lookup] do
     error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
+    moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
     word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
     Lexicon.haiku_words.each do |word|
       data = Lexicon.look_up(word)
@@ -83,8 +84,7 @@ namespace :lexicon do
       file_to_log.flush          
     end
     
-    word_log.close
-    error_log.close
+    [word_log, error_log, moderation_log].map(&:close)
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
   end
