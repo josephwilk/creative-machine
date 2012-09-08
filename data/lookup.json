@@ -141,7 +141,7 @@
 {"word":"canes","syllables":"cane","pronouncations":["keyn"],"phonemes":["K","EY1","N","Z"]}
 {"word":"cant","syllables":"cant","pronouncations":["kant","kant","kahnt","kant","kahnt"],"phonemes":["K","AE1","N","T"]}
 {"word":"capital","syllables":"cap·i·tal","pronouncations":["kap-i-tl","kap-i-tl"],"phonemes":["K","AE1","P","AH0","T","AH0","L"]}
-{"word":"carefully","syllables":"care·ful","pronouncations":["kair-fuhl"],"phonemes":["K","EH1","R","F","AH0","L","IY0"]}
+{"word":"carefully","syllables":"care·ful·ly","pronouncations":["kair-fuhl"],"phonemes":["K","EH1","R","F","AH0","L","IY0"]}
 {"word":"carries","syllables":"Car·rie","pronouncations":["kar-ee","kar-ee"],"phonemes":["K","AE1","R","IY0","Z"]}
 {"word":"cat","syllables":"cat","pronouncations":["kat","kat"],"phonemes":["K","AE1","T"]}
 {"word":"catching","syllables":"catch·ing","pronouncations":["kach-ing","kach"],"phonemes":["K","AE1","CH","IH0","NG"]}
@@ -244,7 +244,7 @@
 {"word":"did","syllables":"did","pronouncations":["did","doo","doo","duh"],"phonemes":["D","IH1","D"]}
 {"word":"die","syllables":"die","pronouncations":["dahy","dahy","dahys"],"phonemes":["D","AY1"]}
 {"word":"different","syllables":"dif·fer·ent","pronouncations":["dif-er-uhnt","dif-ruhnt"],"phonemes":["D","IH1","F","ER0","AH0","N","T"]}
-{"word":"differently","syllables":"dif·fer·ent","pronouncations":["dif-er-uhnt","dif-ruhnt"],"phonemes":["D","IH1","F","R","AH0","N","T","L","IY0"]}
+{"word":"differently","syllables":"dif·fer·ent·ly","pronouncations":["dif-er-uhnt","dif-ruhnt"],"phonemes":["D","IH1","F","R","AH0","N","T","L","IY0"]}
 {"word":"digger","syllables":"dig·ger","pronouncations":["dig-er"],"phonemes":["D","IH1","G","ER0"]}
 {"word":"dipper","syllables":"dip·per","pronouncations":["dip-er"],"phonemes":["D","IH1","P","ER0"]}
 {"word":"direction","syllables":"di·rec·tion","pronouncations":["dih-rek-shuhn","dahy-"],"phonemes":["D","ER0","EH1","K","SH","AH0","N"]}
@@ -319,7 +319,7 @@
 {"word":"face","syllables":"face","pronouncations":["feys"],"phonemes":["F","EY1","S"]}
 {"word":"faces","syllables":"face","pronouncations":["feys"],"phonemes":["F","EY1","S","AH0","Z"]}
 {"word":"failing","syllables":"fail·ing","pronouncations":["fey-ling","feyl"],"phonemes":["F","EY1","L","IH0","NG"]}
-{"word":"faintly","syllables":"faint","pronouncations":["feynt"],"phonemes":["F","EY1","N","T","L","IY0"]}
+{"word":"faintly","syllables":"faint·ly","pronouncations":["feynt"],"phonemes":["F","EY1","N","T","L","IY0"]}
 {"word":"fall","syllables":"fall","pronouncations":["fawl","fawl"],"phonemes":["F","AO1","L"]}
 {"word":"fallen","syllables":"fall·en","pronouncations":["faw-luhn","fawl"],"phonemes":["F","AA1","L","AH0","N"]}
 {"word":"falling","syllables":"fall","pronouncations":["fawl"],"phonemes":["F","AA1","L","IH0","NG"]}
@@ -349,7 +349,7 @@
 {"word":"fire","syllables":"fire","pronouncations":["fahyuhr"],"phonemes":["F","AY1","ER0"]}
 {"word":"firefly","syllables":"fire·fly","pronouncations":["fahyuhr-flahy"],"phonemes":["F","AY1","ER0","F","L","AY2"]}
 {"word":"fireplace","syllables":"fire·place","pronouncations":["fahyuhr-pleys"],"phonemes":["F","AY1","ER0","P","L","EY2","S"]}
-{"word":"firmly","syllables":"firm","pronouncations":["furm"],"phonemes":["F","ER1","M","L","IY0"]}
+{"word":"firmly","syllables":"firm·ly","pronouncations":["furm"],"phonemes":["F","ER1","M","L","IY0"]}
 {"word":"first","syllables":"first","pronouncations":["furst"],"phonemes":["F","ER1","S","T"]}
 {"word":"fishes","syllables":"fish","pronouncations":["fish"],"phonemes":["F","IH1","SH","AH0","Z"]}
 {"word":"fishing","syllables":"fish·ing","pronouncations":["fish-ing","fish"],"phonemes":["F","IH1","SH","IH0","NG"]}
@@ -536,7 +536,7 @@
 {"word":"lark","syllables":"lark","pronouncations":["lahrk","lahrk"],"phonemes":["L","AA1","R","K"]}
 {"word":"late","syllables":"late","pronouncations":["leyt"],"phonemes":["L","EY1","T"]}
 {"word":"law","syllables":"law","pronouncations":["law","law","law","law","law","bon-er"],"phonemes":["L","AO1"]}
-{"word":"lazily","syllables":"la·zy","pronouncations":["ley-zee"],"phonemes":["L","AE1","Z","AH0","L","IY0"]}
+{"word":"lazily","syllables":"la·zy·ly","pronouncations":["ley-zee"],"phonemes":["L","AE1","Z","AH0","L","IY0"]}
 {"word":"lead","syllables":"lead","pronouncations":["leed","led"],"phonemes":["L","EH1","D"]}
 {"word":"leaf","syllables":"leaf","pronouncations":["leef","leevz","leef","muhn-roh"],"phonemes":["L","IY1","F"]}
 {"word":"leafless","syllables":"leaf","pronouncations":["leef","leevz"],"phonemes":["L","IY1","F","L","AH0","S"]}
@@ -561,7 +561,7 @@
 {"word":"live","syllables":"live","pronouncations":["liv","livd","lahyv"],"phonemes":["L","AY1","V"]}
 {"word":"locusts","syllables":"lo·cust","pronouncations":["loh-kuhst"],"phonemes":["L","OW1","K","AH0","S","T","S"]}
 {"word":"lone","syllables":"lone","pronouncations":["lohn"],"phonemes":["L","OW1","N"]}
-{"word":"loneliness","syllables":"lone·ly","pronouncations":["lohn-lee"],"phonemes":["L","OW1","N","L","IY0","N","AH0","S"]}
+{"word":"loneliness","syllables":"lone·li·ness","pronouncations":["lohn-lee"],"phonemes":["L","OW1","N","L","IY0","N","AH0","S"]}
 {"word":"lonely","syllables":"lone·ly","pronouncations":["lohn-lee"],"phonemes":["L","OW1","N","L","IY0"]}
 {"word":"long","syllables":"long","pronouncations":["lawng","long","lawng-ger","long-","lawng-gist","long-","lawng","long","lawng","long","lawng","long","wil-yuhm-suhn","hyoo-ee","bil-yoo"],"phonemes":["L","AO1","NG"]}
 {"word":"longer","syllables":"long","pronouncations":["lawng","long","lawng-ger","long-","lawng-gist","long-"],"phonemes":["L","AO1","NG","G","ER0"]}
@@ -688,7 +688,7 @@
 {"word":"passing","syllables":"pass·ing","pronouncations":["pas-ing","pah-sing","pas","pahs"],"phonemes":["P","AE1","S","IH0","NG"]}
 {"word":"pauses","syllables":"pause","pronouncations":["pawz"],"phonemes":["P","AO1","Z","AH0","Z"]}
 {"word":"peaceful","syllables":"peace·ful","pronouncations":["pees-fuhl"],"phonemes":["P","IY1","S","F","AH0","L"]}
-{"word":"peacefully","syllables":"peace·ful","pronouncations":["pees-fuhl"],"phonemes":["P","IY1","S","F","AH0","L","IY0"]}
+{"word":"peacefully","syllables":"peace·ful·ly","pronouncations":["pees-fuhl"],"phonemes":["P","IY1","S","F","AH0","L","IY0"]}
 {"word":"peach","syllables":"peach","pronouncations":["peech","peech"],"phonemes":["P","IY1","CH"]}
 {"word":"peak","syllables":"peak","pronouncations":["peek","peek"],"phonemes":["P","IY1","K"]}
 {"word":"peasants","syllables":"peas·ant","pronouncations":["pez-uhnt"],"phonemes":["P","EH1","Z","AH0","N","T","S"]}
@@ -765,7 +765,7 @@
 {"word":"reason","syllables":"rea·son","pronouncations":["ree-zuhn"],"phonemes":["R","IY1","Z","AH0","N"]}
 {"word":"recovered","syllables":"re-cov·er","pronouncations":["ree-kuhv-er","ri-kuhv-er"],"phonemes":["R","AH0","K","AH1","V","ER0","D"]}
 {"word":"red","syllables":"red","pronouncations":["red","red","red","ahr","ou-er-bahk","our-","ou-uhr-bahkh","ber-tohlt","greynj","skel-tn"],"phonemes":["R","EH1","D"]}
-{"word":"reluctantly","syllables":"re·luc·tant","pronouncations":["ri-luhk-tuhnt"],"phonemes":["R","IH0","L","AH1","K","T","AH0","N","T","L","IY0"]}
+{"word":"reluctantly","syllables":"re·luc·tant·ly","pronouncations":["ri-luhk-tuhnt"],"phonemes":["R","IH0","L","AH1","K","T","AH0","N","T","L","IY0"]}
 {"word":"remain","syllables":"re·main","pronouncations":["ri-meyn"],"phonemes":["R","IH0","M","EY1","N"]}
 {"word":"remains","syllables":"re·main","pronouncations":["ri-meyn"],"phonemes":["R","IH0","M","EY1","N","Z"]}
 {"word":"response","syllables":"re·sponse","pronouncations":["ri-spons"],"phonemes":["R","IH0","S","P","AA1","N","S"]}
@@ -815,7 +815,7 @@
 {"word":"seas","syllables":"sea","pronouncations":["see"],"phonemes":["S","IY1","Z"]}
 {"word":"seaweed","syllables":"sea·weed","pronouncations":["see-weed"],"phonemes":["S","IY1","W","IY2","D"]}
 {"word":"seclusion","syllables":"se·clu·sion","pronouncations":["si-kloo-zhuhn"],"phonemes":["S","IH0","K","L","UW1","ZH","AH0","N"]}
-{"word":"secretly","syllables":"se·cret","pronouncations":["see-krit"],"phonemes":["S","IY1","K","R","IH0","T","L","IY0"]}
+{"word":"secretly","syllables":"se·cret·ly","pronouncations":["see-krit"],"phonemes":["S","IY1","K","R","IH0","T","L","IY0"]}
 {"word":"secure","syllables":"se·cure","pronouncations":["si-kyoor"],"phonemes":["S","IH0","K","Y","UH1","R"]}
 {"word":"securing","syllables":"se·cure","pronouncations":["si-kyoor"],"phonemes":["S","IH0","K","Y","UH1","R","IH0","NG"]}
 {"word":"see","syllables":"see","pronouncations":["see","see"],"phonemes":["S","IY1"]}
@@ -850,7 +850,7 @@
 {"word":"sick","syllables":"sick","pronouncations":["sik","sik"],"phonemes":["S","IH1","K"]}
 {"word":"sign","syllables":"sign","pronouncations":["sahyn"],"phonemes":["S","AY1","N"]}
 {"word":"silence","syllables":"si·lence","pronouncations":["sahy-luhns"],"phonemes":["S","AY1","L","AH0","N","S"]}
-{"word":"silently","syllables":"si·lent","pronouncations":["sahy-luhnt"],"phonemes":["S","AY1","L","AH0","N","T","L","IY0"]}
+{"word":"silently","syllables":"si·lent·ly","pronouncations":["sahy-luhnt"],"phonemes":["S","AY1","L","AH0","N","T","L","IY0"]}
 {"word":"sing","syllables":"sing","pronouncations":["sing"],"phonemes":["S","IH1","NG"]}
 {"word":"singing","syllables":"sing","pronouncations":["sing"],"phonemes":["S","IH1","NG","IH0","NG"]}
 {"word":"single","syllables":"sin·gle","pronouncations":["sing-guhl"],"phonemes":["S","IH1","NG","G","AH0","L"]}
@@ -874,7 +874,7 @@
 {"word":"slickers","syllables":"slick·er","pronouncations":["slik-er","slik-er"],"phonemes":["S","L","IH1","K","ER0","Z"]}
 {"word":"sliding","syllables":"slid·ing","pronouncations":["slahy-ding","slahyd","slid","slid-n"],"phonemes":["S","L","AY1","D","IH0","NG"]}
 {"word":"slosh","syllables":"slosh","pronouncations":["slosh"],"phonemes":["S","L","AA1","SH"]}
-{"word":"slowly","syllables":"slow","pronouncations":["sloh"],"phonemes":["S","L","OW1","L","IY0"]}
+{"word":"slowly","syllables":"slow·ly","pronouncations":["sloh"],"phonemes":["S","L","OW1","L","IY0"]}
 {"word":"small","syllables":"small","pronouncations":["smawl"],"phonemes":["S","M","AO1","L"]}
 {"word":"smell","syllables":"smell","pronouncations":["smel"],"phonemes":["S","M","EH1","L"]}
 {"word":"smells","syllables":"smell","pronouncations":["smel"],"phonemes":["S","M","EH1","L","Z"]}
@@ -974,7 +974,7 @@
 {"word":"tell","syllables":"tell","pronouncations":["tel","tel","tel","vil-helm"],"phonemes":["T","EH1","L"]}
 {"word":"tempest","syllables":"tem·pest","pronouncations":["tem-pist"],"phonemes":["T","EH1","M","P","AH0","S","T"]}
 {"word":"temple","syllables":"tem·ple","pronouncations":["tem-puhl","tem-puhl","tem-puhl","tem-puhl"],"phonemes":["T","EH1","M","P","AH0","L"]}
-{"word":"temporarily","syllables":"tem·po·rar·y","pronouncations":["tem-puh-rer-ee","tem-puh-rair-uh-lee","tem-puh-rer-"],"phonemes":["T","EH2","M","P","ER0","EH1","R","AH0","L","IY0"]}
+{"word":"temporarily","syllables":"tem·po·rar·y·ly","pronouncations":["tem-puh-rer-ee","tem-puh-rair-uh-lee","tem-puh-rer-"],"phonemes":["T","EH2","M","P","ER0","EH1","R","AH0","L","IY0"]}
 {"word":"terrible","syllables":"ter·ri·ble","pronouncations":["ter-uh-buhl"],"phonemes":["T","EH1","R","AH0","B","AH0","L"]}
 {"word":"tethered","syllables":"teth·er","pronouncations":["teth-er"],"phonemes":["T","EH1","DH","ER0","D"]}
 {"word":"than","syllables":"than","pronouncations":["than","then","thuhn","uhn"],"phonemes":["DH","AE1","N"]}
@@ -1058,7 +1058,7 @@
 {"word":"unaware","syllables":"un·a·ware","pronouncations":["uhn-uh-wair"],"phonemes":["AH2","N","AH0","W","EH1","R"]}
 {"word":"uncertain","syllables":"un·cer·tain","pronouncations":["uhn-sur-tn"],"phonemes":["AH0","N","S","ER1","T","AH0","N"]}
 {"word":"under","syllables":"un·der","pronouncations":["uhn-der"],"phonemes":["AH1","N","D","ER0"]}
-{"word":"unknowingly","syllables":"un·know·ing","pronouncations":["uhn-noh-ing"],"phonemes":["AH0","N","N","OW1","IH0","NG","L","IY0"]}
+{"word":"unknowingly","syllables":"un·know·ing·ly","pronouncations":["uhn-noh-ing"],"phonemes":["AH0","N","N","OW1","IH0","NG","L","IY0"]}
 {"word":"unknown","syllables":"un·known","pronouncations":["uhn-nohn"],"phonemes":["AH0","N","N","OW1","N"]}
 {"word":"unnoticed","syllables":"no·tice","pronouncations":["noh-tis"],"phonemes":["AH0","N","N","OW1","T","IH0","S","T"]}
 {"word":"unseen","syllables":"un·seen","pronouncations":["uhn-seen"],"phonemes":["AH0","N","S","IY1","N"]}
@@ -1068,7 +1068,7 @@
 {"word":"us","syllables":"us","pronouncations":["uhs","yoo","wee","ahy","oo"],"phonemes":["AH1","S"]}
 {"word":"use","syllables":"use","pronouncations":["yooz","yoost","yoos"],"phonemes":["Y","UW1","S"]}
 {"word":"useful","syllables":"use·ful","pronouncations":["yoos-fuhl"],"phonemes":["Y","UW1","S","F","AH0","L"]}
-{"word":"usually","syllables":"u·su·al","pronouncations":["yoo-zhoo-uhl","yoozh-wuhl"],"phonemes":["Y","UW1","ZH","AH0","W","AH0","L","IY0"]}
+{"word":"usually","syllables":"u·su·al·ly","pronouncations":["yoo-zhoo-uhl","yoozh-wuhl"],"phonemes":["Y","UW1","ZH","AH0","W","AH0","L","IY0"]}
 {"word":"valley","syllables":"val·ley","pronouncations":["val-ee"],"phonemes":["V","AE1","L","IY0"]}
 {"word":"vanish","syllables":"van·ish","pronouncations":["van-ish"],"phonemes":["V","AE1","N","IH0","SH"]}
 {"word":"vanished","syllables":"van·ish","pronouncations":["van-ish"],"phonemes":["V","AE1","N","IH0","SH","T"]}
