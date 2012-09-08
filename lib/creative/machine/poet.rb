@@ -125,6 +125,16 @@ module Machine
   end
   
   class Lexicon
+    def self.invalid_double?(current_word, new_word)
+      invalid_particles = ['to', 'a', 'the', 'in']
+
+      if current_word == new_word && invalid_particles.include?(new_word)
+        true
+      else
+        false
+      end
+    end
+    
     def self.lookup(word)
       @data ||= JSON.parse(File.read(File.dirname(__FILE__) + '/../../../data/lookup_dictionary.json'))
       @data[word]
@@ -146,7 +156,7 @@ module Machine
         syllable_count = Lexicon.no_syllables_in(word)
         next unless syllable_count
 
-        if (total_syllables - Lexicon.no_syllables_in(word)) >= 0
+        if ((total_syllables - Lexicon.no_syllables_in(word)) >= 0) && !Lexicon.invalid_double?(poem_words[-1], word)
           poem_words << word
           total_syllables = total_syllables - Lexicon.no_syllables_in(word)
         end
