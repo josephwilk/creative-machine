@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 
-module Lexicon
+module LexiconBuilder
   class << self
     URL = 'http://dictionary.reference.com/browse'
     
@@ -16,18 +16,20 @@ module Lexicon
       words
     end
   
-    def lookup_word(word)
+    def lookup(word)
       doc = Nokogiri::HTML(open("#{URL}/#{URI.escape(word)}"))
 
       nodes = doc.xpath('//h2[@class="me"]')
       return unless nodes && nodes.first
       word_with_syllables_seperated = nodes.first.text
+      word_with_syllables_seperated = word_with_syllables_seperated.gsub(/\u00B7/, '-')
     
       pronouncations = doc.xpath('//span[@class="show_spellpr"]/span[@class="pron"]').
                            map{|a| a.text}.
-                           reject{|w| w =~ /,|;/}
+                           reject{|w| w =~ /,|;/}.
+                           uniq
 
-      phonemes = Lexicon.how_do_i_pronounce(word)
+      phonemes = how_do_i_pronounce(word)
       
       {:word => word,
        :syllables => word_with_syllables_seperated,
@@ -37,7 +39,7 @@ module Lexicon
       puts "#{word} lookup failed: #{$!}"
       nil
     end
-
+    
     private
 
     def how_do_i_pronounce(word)
@@ -76,12 +78,17 @@ namespace :lexicon do
     error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
     moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
     word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
-    Lexicon.haiku_words.each do |word|
-      data = Lexicon.look_up(word)
+    LexiconBuilder.haiku_words.each do |word|
+      data = LexiconBuilder.lookup(word)
       next unless data
-      file_to_log = !data[:phonemes] ? error_log : word_log
-      file_to_log.write(data.to_json + "\n")
-      file_to_log.flush          
+      
+      if (data[:syllables].gsub('-','')).length != word.length
+        moderation_log.write(data.to_json + "\n")
+      else
+        file_to_log = !data[:phonemes] ? error_log : word_log
+        file_to_log.write(data.to_json + "\n")
+        file_to_log.flush          
+      end
     end
     
     [word_log, error_log, moderation_log].map(&:close)
