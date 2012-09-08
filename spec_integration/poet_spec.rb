@@ -7,7 +7,7 @@ module Machine
     it "should create creative poems" do
       poet = Creative::Machine::Poet.new
       poems = poet.evolve()
-      puts poems
+      poems.each {|poem| puts poem, ""}
     end
   end
   
