@@ -78,9 +78,13 @@ namespace :lexicon do
     error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
     moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
     word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
+
+    seen = {}
+
     LexiconBuilder.haiku_words.each do |word|
       data = LexiconBuilder.lookup(word)
       next unless data
+      next if seen[word]
       
       if (data[:syllables].gsub('-','')).length != word.length
         moderation_log.write(data.to_json + "\n")
@@ -89,6 +93,7 @@ namespace :lexicon do
         file_to_log.write(data.to_json + "\n")
         file_to_log.flush          
       end
+      seen[word] = true
     end
     
     [word_log, error_log, moderation_log].map(&:close)
