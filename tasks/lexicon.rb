@@ -7,13 +7,14 @@ module LexiconBuilder
     URL = 'http://dictionary.reference.com/browse'
     
     def haiku_words
+      return @words if @words
       words = File.read(File.dirname(__FILE__) + '/../data/haiku.txt')
       words = words.split(' ').
                     reject {|word| word =~ /-|--/}.
                     map{|word| word.downcase}.
                     map{|word| word.gsub(/[^\w\d]/, '')}
 
-      words
+      @words ||= words
     end
   
     def lookup(word)
@@ -31,6 +32,8 @@ module LexiconBuilder
 
       phonemes = how_do_i_pronounce(word)
       
+      word_with_syllables_seperated, pronouncations = *correct_any_bad_lookups(word, word_with_syllables_seperated, pronouncations)       
+      
       {:word => word,
        :syllables => word_with_syllables_seperated,
        :pronouncations => pronouncations,
@@ -40,7 +43,28 @@ module LexiconBuilder
       nil
     end
     
+    
+    def correct_any_bad_lookups(word, syllables, pronouncations)
+      dictionary_looked_up_word = syllables.gsub('-','')
+      
+      if failed_match?(dictionary_looked_up_word, word)
+        if word[-1] == 's' && word[0..-2] == dictionary_looked_up_word
+          syllables = syllables + "s"
+          pronouncations = pronouncations.map{|word| word + "s" }  
+        elsif word[-3..-1] == 'ing' && word[0..-4] == dictionary_looked_up_word
+          syllables = syllables + "-ing"
+          pronouncations = pronouncations.map{|word| word + "-ing" }
+        end
+      end
+      
+      [syllables, pronouncations]
+    end
+    
     private
+
+    def failed_match?(syllables, word)
+      (syllables.gsub('-','')).length != word.length
+    end
 
     def how_do_i_pronounce(word)
       @pronouncation_dictionary ||= build_pronuciation_dictionary
@@ -91,28 +115,17 @@ namespace :lexicon do
       next unless data
       next if seen[word]
       
-      if (data[:syllables].gsub('-','')).length != word.length
-        log = if word[-1] == 's' && word[0..-2] == data[:syllables].gsub('-','')
-          data[:syllables] = data[:syllables] + "s"
-          data[:pronouncations] = data[:pronouncations].map{|word| word + "s" }
-          
-          !data[:phonemes] ? error_log : word_log
-        elsif word[-3..-1] == 'ing' && word[0..-4] == data[:syllables].gsub('-','')
-          data[:syllables] = data[:syllables] + "-ing"
-          data[:pronouncations] = data[:pronouncations].map{|word| word + "-ing" }
-          
-          !data[:phonemes] ? error_log : word_log
-        else
-          moderation_log
-        end
-        
-        log.write(data.to_json + "\n")
-        log.flush          
+      log = if !data[:phonemes]
+        error_log        
+      elsif (data[:syllables].gsub('-','')).length != word.length
+        moderation_log
       else
-        file_to_log = !data[:phonemes] ? error_log : word_log
-        file_to_log.write(data.to_json + "\n")
-        file_to_log.flush          
+        word_log
       end
+        
+      log.write(data.to_json + "\n")
+      log.flush          
+
       seen[word] = true
       puts "#{(words_processed.to_f / total_words).round} % completed"
     end
@@ -120,6 +133,35 @@ namespace :lexicon do
     [word_log, error_log, moderation_log].map(&:close)
 
     puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
+  end
+  
+  desc "process moderation"
+  task :moderation_process do
+    word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'a')
+    File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json') do |f|
+      f.readlines.each do |line|
+        data = JSON.parse(line)
+        
+        next unless data['phonemes']
+
+        word = data['word']
+        dictionary_looked_up_word = data['syllables'].gsub('-','')
+      
+        if word[-1] == 's' && word[0..-2] == dictionary_looked_up_word
+          data['syllables'] = data['syllables'] + "s"
+          data['pronouncations'] = data['pronouncations'].map{|word| word + "s" }  
+          
+          word_log.write(data.to_json + "\n") 
+        elsif word[-3..-1] == 'ing' && word[0..-4] == dictionary_looked_up_word
+          data['syllables'] = data['syllables'] + "-ing"
+          data['pronouncations'] = data['pronouncations'].map{|word| word + "-ing" }
+          
+          word_log.write(data.to_json + "\n") 
+        end
+
+      end
+    end
+    word_log.close
   end
   
   desc "format json line segments into a single json hash"
