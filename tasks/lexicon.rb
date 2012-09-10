@@ -87,7 +87,16 @@ namespace :lexicon do
       next if seen[word]
       
       if (data[:syllables].gsub('-','')).length != word.length
-        moderation_log.write(data.to_json + "\n")
+        if word[-1] == 's' && word[0..-2] == data[:syllables].gsub('-','')
+          data[:syllables] = data[:syllables] + "s"
+          data[:pronouncations] = data[:pronouncations].map{|word| word + "s" }
+          
+          file_to_log = !data[:phonemes] ? error_log : word_log
+          file_to_log.write(data.to_json + "\n")
+          file_to_log.flush          
+        else
+          moderation_log.write(data.to_json + "\n")
+        end
       else
         file_to_log = !data[:phonemes] ? error_log : word_log
         file_to_log.write(data.to_json + "\n")
