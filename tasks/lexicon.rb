@@ -81,28 +81,40 @@ namespace :lexicon do
 
     seen = {}
 
+    total_words = LexiconBuilder.haiku_words.count
+    words_processed = 0
+
     LexiconBuilder.haiku_words.each do |word|
+      words_processed = words_processed + 1
+            
       data = LexiconBuilder.lookup(word)
       next unless data
       next if seen[word]
       
       if (data[:syllables].gsub('-','')).length != word.length
-        if word[-1] == 's' && word[0..-2] == data[:syllables].gsub('-','')
+        log = if word[-1] == 's' && word[0..-2] == data[:syllables].gsub('-','')
           data[:syllables] = data[:syllables] + "s"
           data[:pronouncations] = data[:pronouncations].map{|word| word + "s" }
           
-          file_to_log = !data[:phonemes] ? error_log : word_log
-          file_to_log.write(data.to_json + "\n")
-          file_to_log.flush          
+          !data[:phonemes] ? error_log : word_log
+        elsif word[-3..-1] == 'ing' && word[0..-4] == data[:syllables].gsub('-','')
+          data[:syllables] = data[:syllables] + "-ing"
+          data[:pronouncations] = data[:pronouncations].map{|word| word + "-ing" }
+          
+          !data[:phonemes] ? error_log : word_log
         else
-          moderation_log.write(data.to_json + "\n")
+          moderation_log
         end
+        
+        log.write(data.to_json + "\n")
+        log.flush          
       else
         file_to_log = !data[:phonemes] ? error_log : word_log
         file_to_log.write(data.to_json + "\n")
         file_to_log.flush          
       end
       seen[word] = true
+      puts "#{(words_processed.to_f / total_words).round} % completed"
     end
     
     [word_log, error_log, moderation_log].map(&:close)
