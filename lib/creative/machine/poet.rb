@@ -109,7 +109,7 @@ module Machine
     private
     def score_poems(population)
       population.map do |poem|
-        inputs = PoetEngine::NeuralNetwork::InputEncoder.convert(poem)
+        inputs = PoetEngine::NeuralNetwork::PoemEncoder.encode(poem)
         score = inputs.reduce(0){|score, input| score += @neural_network.run(input)[0]}
 
         [poem, score]

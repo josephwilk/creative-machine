@@ -3,11 +3,10 @@ module Creative
     module PoetEngine
       module NeuralNetwork
 
-        class InputEncoder
+        class PoemEncoder
   
           class << self
-            def convert(poem)
-              #TODO: syllables should know their word index within lexicon
+            def encode(poem)
               word_index_within_lexicon = 1
               poem.syllables.map{ |syllable| SyllableEncoder.encode(syllable, word_index_within_lexicon) }
             end
