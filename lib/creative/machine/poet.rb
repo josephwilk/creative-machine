@@ -14,6 +14,7 @@ module Machine
     def initialize
       @lexicon = Lexicon.new
       @evaluator = Evaluator.new
+      @mutator = PoetEngine::Mutator.new
       @poems = nil
     end
     
@@ -29,8 +30,7 @@ module Machine
     end
     
     def mutation(poems)
-      next_generation_poems = poems.map {|poem| PoetEngine::Mutator.mutate(poem) }
-      next_generation_poems[0..next_generation_poems.length/2]
+      poems.map {|poem| @mutator.mutate(poem) }
     end
     
     def crossover(poems)
