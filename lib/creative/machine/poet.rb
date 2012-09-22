@@ -1,6 +1,8 @@
 require 'ruby_fann/neural_network'
 require 'creative/machine/poet_engine/neural_network'
 require 'creative/machine/poet_engine/rhymer'
+require 'creative/machine/poet_engine/mutator'
+require 'creative/machine/poet_engine/crossover'
 require 'json'
 
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
@@ -20,23 +22,21 @@ module Machine
         @poems ||= randomly_generate_poems
         @poems = @evaluator.survivors(@poems)
         @poems = mutation(@poems)
+        @poems = crossover(@poems)
       end
       
       @poems.map{|poem| poem.to_s}
     end
     
     def mutation(poems)
-      #something or nothing to the set of words this limerick carries around (its minilex)
-      #something or nothing to the rhyme
-      #something or nothing to the lines of the poem.
-      poems[0..poems.length/2]
+      next_generation_poems = poems.map {|poem| PoetEngine::Mutator.mutate(poem) }
+      next_generation_poems[0..next_generation_poems.length/2]
     end
     
-    def crossover(poem_1, poem_2)
-      #first it may merge the former poem's minilex with the latter's or ignore the latter minilex or do nothing
-      #it may take into consideration the other poem's rhyming or ignore the other poem's rhyming altogether or do nothing
-      #it will either work with the former and the latter's lines or ignore the latter's lines or do nothing
-      [poem_1, poem_2]
+    def crossover(poems)
+      new_poems = []
+      poems.each_slice(2) {|poem_1, poem_2| new_poems << PoetEngine::Crossover.crossover(poem_1, poem_2)}
+      new_poems
     end
     
     private
