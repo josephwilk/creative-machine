@@ -126,7 +126,7 @@ module Machine
   
   class Lexicon
     def self.invalid_particles?(current_word, new_word)
-      invalid_particles = ['to', 'a', 'the', 'in']
+      invalid_particles = ['to', 'a', 'the', 'in', 'of']
 
       invalid_combinations = [%W{the of},
                               %W{of in},
