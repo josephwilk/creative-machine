@@ -16,10 +16,17 @@ module Creative
           end
           
           def crossover_lines(poem_1, poem_2)
-            new_poem = poem_1
-            new_poem[0] = poem_2[0]
-            new_poem[-1] = poem_2[-1]
-            new_poem
+            child_1 = poem_1
+            child_2 = poem_2
+            
+            
+            child_1[0] = poem_2[0]
+            child[-1] = poem_2[-1]
+            
+            child_2[0] = poem_1[0]
+            child_2[-1] = poem_1[-1]
+            
+            [child_1, child_2]
           end
 
           private
