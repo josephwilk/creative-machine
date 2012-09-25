@@ -4,7 +4,8 @@ module Creative
     module PoetEngine
       class Mutator
 
-        def initialize
+        def initialize(lexicon)
+          @lexicon = lexicon
         end
         
         def mutate(poem)

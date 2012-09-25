@@ -14,11 +14,11 @@ module Machine
     def initialize
       @lexicon = Lexicon.new
       @evaluator = Evaluator.new
-      @mutator = PoetEngine::Mutator.new
+      @mutator = PoetEngine::Mutator.new(@lexicon)
       @poems = nil
     end
     
-    def evolve(generations = 10)
+    def evolve(generations = 100)
       generations.times do 
         @poems ||= randomly_generate_poems
         @poems = @evaluator.survivors(@poems)
@@ -36,7 +36,7 @@ module Machine
     def crossover(poems)
       new_poems = []
       poems.each_slice(2) {|poem_1, poem_2| new_poems << PoetEngine::Crossover.crossover(poem_1, poem_2)}
-      new_poems
+      new_poems.flatten
     end
     
     private
