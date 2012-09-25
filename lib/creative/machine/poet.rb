@@ -1,8 +1,8 @@
 require 'ruby_fann/neural_network'
 require 'creative/machine/poet_engine/neural_network'
 require 'creative/machine/poet_engine/rhymer'
-require 'creative/machine/poet_engine/mutator'
-require 'creative/machine/poet_engine/crossover'
+require 'creative/machine/poet_engine/evolution/mutator'
+require 'creative/machine/poet_engine/evolution/crossover'
 require 'json'
 
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
@@ -14,7 +14,7 @@ module Machine
     def initialize
       @lexicon = Lexicon.new
       @evaluator = Evaluator.new
-      @mutator = PoetEngine::Mutator.new(@lexicon)
+      @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
       @poems = nil
     end
     
@@ -35,7 +35,7 @@ module Machine
     
     def crossover(poems)
       new_poems = []
-      poems.each_slice(2) {|poem_1, poem_2| new_poems << PoetEngine::Crossover.crossover(poem_1, poem_2)}
+      poems.each_slice(2) {|poem_1, poem_2| new_poems << PoetEngine::Evolution::Crossover.crossover(poem_1, poem_2)}
       new_poems.flatten
     end
     
