@@ -2,6 +2,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 
+require 'pronounce'
+
 module LexiconBuilder
   class << self
     URL = 'http://dictionary.reference.com/browse'
@@ -30,7 +32,7 @@ module LexiconBuilder
                            reject{|w| w =~ /,|;/}.
                            uniq
 
-      phonemes = how_do_i_pronounce(word)
+      phonemes = Pronounce.how_do_i_pronounce(word)
       
       word_with_syllables_seperated, pronouncations = *correct_any_bad_lookups(word, word_with_syllables_seperated, pronouncations)       
       
@@ -65,40 +67,13 @@ module LexiconBuilder
     def failed_match?(syllables, word)
       (syllables.gsub('-','')).length != word.length
     end
-
-    def how_do_i_pronounce(word)
-      @pronouncation_dictionary ||= build_pronuciation_dictionary
-      @pronouncation_dictionary[word]
-    end
-  
-    def build_pronuciation_dictionary
-      dictionary = {}
-    
-      File.open(File.dirname(__FILE__) + '/../data/cmudict/cmudict.0.7a') do |f|
-        f.readlines.each do |line|
-          word, *pron = line.strip.split(' ')
-          next unless word && !word.empty? && !word[/[^A-Z]+/]
-          dictionary[word.downcase] = pron
-        end
-      end
-      
-      dictionary
-    end
   end
   
 end
 
-namespace :lexicon do
-  desc "Download latest cmu-dictionary"
-  task :download_cmu do
-    if !File.directory?(File.dirname(__FILE__) + '/../data/cmudict')
-      puts "[INFO] Downloading cmudict dictionaries"
-    `wget http://cmusphinx.svn.sourceforge.net/viewvc/cmusphinx/trunk/cmudict/?view=tar -O data/cmudict.tar.gz && tar -xf data/cmudict.tar.gz`
-    end
-  end
-  
+namespace :lexicon do  
   desc "map words to syllables/pronuciation/emphasis"
-  task :build => [:download_cmu, :format_lookup] do
+  task :build => [:format_lookup] do
     error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
     moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
     word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
