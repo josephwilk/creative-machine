@@ -15,20 +15,33 @@ module Machine
     def initialize
       @lexicon = PoetEngine::Lexicon.new
       @evaluator = Evaluator.new
+      @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
+      @crossover = PoetEngine::Evolution::Crossover
       @poems = nil
     end
     
     def evolve(generations = 100)
       generations.times do 
-        @poems ||= Population.new(randomly_generate_poems)
+        @poems ||= randomly_generate_poems
         @poems = @evaluator.survivors(@poems)
-        @poems = @poems.evolve
+        @poems = mutation(@poems)
+        @poems = crossover(@poems)
       end
       
       @poems.map{|poem| poem.to_s}
     end
-    
+
     private
+    def mutation(poems)
+      poems.map {|poem| @mutator.mutate(poem) }
+    end
+    
+    def crossover(poems)
+      new_poems = []
+      poems.each_slice(2) {|poem_1, poem_2| new_poems << @crossover.crossover(poem_1, poem_2)}
+      new_poems.flatten
+    end
+
     def randomly_generate_poems
       POPULATION_SIZE.times.map{|_| randomly_generate_poem }
     end
@@ -48,38 +61,6 @@ module Machine
     def find_correct_stress_pattern(words)
       words
     end
-  end
-  
-  class Population
-    include Enumerable
-    
-    def initialize(poems)
-      @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
-      @crossover = PoetEngine::Evolution::Crossover
-      @poems = poems
-    end
-    
-    def each
-      @poems.each{|poem| yield poem }
-    end
-    
-    def evolve
-      next_generation_poems = @poems
-      next_generation_poems = mutation(next_generation_poems)
-      next_generation_poems = crossover(next_generation_poems)
-      Population.new(next_generation_poems)
-    end
-    
-    def mutation(poems)
-      poems.map {|poem| @mutator.mutate(poem) }
-    end
-    
-    def crossover(poems)
-      new_poems = []
-      poems.each_slice(2) {|poem_1, poem_2| new_poems << @crossover.crossover(poem_1, poem_2)}
-      new_poems.flatten
-    end
-
   end
   
   class Poem
@@ -122,11 +103,9 @@ module Machine
     end
     
     def survivors(population)
-      surviving_poems = score_poems(population).
-                      select{|(poem, score)| survivor?(poem, score) }.
-                      map{|(poem, score)| poem }
-      
-      Population.new(surviving_poems)
+      score_poems(population).
+      select{|(poem, score)| survivor?(poem, score) }.
+      map{|(poem, score)| poem }
     end
     
     private
