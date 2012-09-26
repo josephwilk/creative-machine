@@ -22,7 +22,7 @@ module Machine
       generations.times do 
         @poems ||= Population.new(randomly_generate_poems)
         @poems = @evaluator.survivors(@poems)
-        @poems.evolve
+        @poems = @poems.evolve
       end
       
       @poems.map{|poem| poem.to_s}
@@ -51,6 +51,7 @@ module Machine
   end
   
   class Population
+    include Enumerable
     
     def initialize(poems)
       @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
@@ -58,15 +59,15 @@ module Machine
       @poems = poems
     end
     
-    def map
-      @poems.map{|poem| yield poem }
+    def each
+      @poems.each{|poem| yield poem }
     end
     
     def evolve
       next_generation_poems = @poems
       next_generation_poems = mutation(next_generation_poems)
       next_generation_poems = crossover(next_generation_poems)
-      next_generation_poems
+      Population.new(next_generation_poems)
     end
     
     def mutation(poems)
