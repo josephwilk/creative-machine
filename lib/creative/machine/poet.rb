@@ -14,7 +14,7 @@ module Machine
     
     def initialize
       @lexicon = PoetEngine::Lexicon.new
-      @evaluator = Evaluator.new
+      @evaluator = Evaluator.new(@lexicon)
       @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
       @crossover = PoetEngine::Evolution::Crossover
       @poems = nil
@@ -68,9 +68,8 @@ module Machine
       @lines = lines
     end
     
-    def syllables
-      #TODO: extract syllables
-      @lines.join().split
+    def words
+      @lines.flatten
     end
     
     def to_s
@@ -96,7 +95,8 @@ module Machine
   end
   
   class Evaluator
-    def initialize
+    def initialize(lexicon)
+      @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
       @neural_network = RubyFann::Standard.new(:num_inputs => 77, 
                                                :hidden_neurons => [2, 8, 4, 3, 4], 
                                                :num_outputs => 1)
@@ -111,7 +111,7 @@ module Machine
     private
     def score_poems(population)
       population.map do |poem|
-        inputs = PoetEngine::NeuralNetwork::PoemEncoder.encode(poem)
+        inputs = @poem_encoder.encode(poem)
         score = inputs.reduce(0){|score, input| score += @neural_network.run(input)[0]}
 
         [poem, score]

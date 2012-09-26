@@ -34,6 +34,11 @@ module Creative
   	        word_data['syllables'].split("-").count
   	      end
   	    end
+        
+        def index(word)
+  	      @data ||= JSON.parse(File.read(DICTIONARY_FILE))
+          @data.keys.sort.index(word)
+        end
     
   	    def pick_words(total_syllables = 10)
   	      poem_words = []
