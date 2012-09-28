@@ -32,9 +32,13 @@ module LexiconBuilder
                            reject{|w| w =~ /,|;/}.
                            uniq
 
+
+
       phonemes = Pronounce.how_do_i_pronounce(word)
       
       word_with_syllables_seperated, pronouncations = *correct_any_bad_lookups(word, word_with_syllables_seperated, pronouncations)       
+
+      pronouncations = correct_any_bad_pronounications(pronouncations, word_with_syllables_seperated)
       
       {:word => word,
        :syllables => word_with_syllables_seperated,
@@ -45,6 +49,10 @@ module LexiconBuilder
       nil
     end
     
+    def correct_any_bad_pronounications(pronouncations, syllables)
+      syllables_count = syllables.split("-").count
+      pronouncations.select{|pronouncation| pronouncation.split('-').count == syllables_count}
+    end
     
     def correct_any_bad_lookups(word, syllables, pronouncations)
       dictionary_looked_up_word = syllables.gsub('-','')
