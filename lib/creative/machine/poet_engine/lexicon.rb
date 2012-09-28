@@ -27,6 +27,11 @@ module Creative
   	      @data ||= JSON.parse(File.read(DICTIONARY_FILE))
   	      @data[word]
   	    end
+
+        def self.phonemes_for(word)
+  	      word_data = Lexicon.lookup(word)
+  	      word_data ? word_data['phonemes'] : []
+        end
         
         def self.syllables_in(word)
   	      word_data = Lexicon.lookup(word)

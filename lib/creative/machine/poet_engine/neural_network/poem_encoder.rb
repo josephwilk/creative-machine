@@ -16,10 +16,15 @@ module Creative
           
           def encode_word(word)
             lexicon_index_in_binary = binary_lexicon_word_code(word)
-            Lexicon.syllables_in(word).map{|syllable| lexicon_index_in_binary + encode_syllable(syllable)}
+            Lexicon.syllables_in(word).each_with_index.map{|syllable, syllable_index| lexicon_index_in_binary + encode_syllable(word, syllable, syllable_index)}
           end
           
-          def encode_syllable(syllable)
+          def encode_syllable(word, syllable, syllable_index)
+            phonemes = Lexicon.phonemes_for(word)
+            puts phonemes.inspect
+
+            #TODO: identify which phonems are associated with this syllable.
+            
             [0] * 67
           end
           
