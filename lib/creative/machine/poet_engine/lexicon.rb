@@ -27,6 +27,13 @@ module Creative
   	      @data ||= JSON.parse(File.read(DICTIONARY_FILE))
   	      @data[word]
   	    end
+        
+        def self.syllables_in(word)
+  	      word_data = Lexicon.lookup(word)
+  	      if word_data
+  	        word_data['syllables'].split("-")
+  	      end
+        end
 
   	    def self.no_syllables_in(word)
   	      word_data = Lexicon.lookup(word)

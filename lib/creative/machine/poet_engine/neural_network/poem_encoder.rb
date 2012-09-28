@@ -11,11 +11,16 @@ module Creative
           end
 
           def encode(poem)
-            poem.words.map {|word| encode_word(word)}
+            poem.words.reduce([]) {|binary_poem, word| binary_poem + encode_word(word)}
           end
           
           def encode_word(word)
-            binary_lexicon_word_code(word) + [0] * 67
+            lexicon_index_in_binary = binary_lexicon_word_code(word)
+            Lexicon.syllables_in(word).map{|syllable| lexicon_index_in_binary + encode_syllable(syllable)}
+          end
+          
+          def encode_syllable(syllable)
+            [0] * 67
           end
           
           def binary_lexicon_word_code(word)
