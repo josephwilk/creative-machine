@@ -20,8 +20,14 @@ module Creative
           end
           
           def encode_syllable(word, syllable, syllable_index)
+            syllable_count = Lexicon.syllables_in(word).count
+             
             phonemes = Lexicon.phonemes_for(word)
             puts phonemes.inspect
+            
+            if syllable_count == 1
+              phonemes
+            end
 
             #TODO: identify which phonems are associated with this syllable.
             
