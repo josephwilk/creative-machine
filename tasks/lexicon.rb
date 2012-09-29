@@ -43,12 +43,12 @@ module LexiconBuilder
        :pronouncations => pronouncations,
        :phonemes => phonemes}
     rescue
-      puts "#{word} lookup failed: #{$!}"
+      puts "#{word} lookup failed: #{$!} #{$!.backtrace.join("\n")}"
       nil
     end
     
     def correct_any_bad_pronounications(pronouncations, syllables)
-      syllables_count = syllables.split("-").count
+      syllables_count = syllables.count
       pronouncations.select{|pronouncation| pronouncation.split('-').reject(&:empty?).count == syllables_count}.
                      map{|pronouncation| pronouncation.split('-') }
     end
@@ -94,7 +94,7 @@ namespace :lexicon do
       
       log = if !data[:phonemes]
         error_log        
-      elsif (data[:syllables].gsub('-','')).length != word.length
+      elsif (data[:syllables].join('')).length != word.length
         moderation_log
       else
         word_log
