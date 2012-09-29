@@ -37,6 +37,10 @@ module LexiconBuilder
       word_with_syllables_seperated, pronouncations = *correct_any_bad_lookups(word, word_with_syllables_seperated, pronouncations)       
 
       pronouncations = correct_any_bad_pronounications(pronouncations, word_with_syllables_seperated)
+
+      if word_with_syllables_seperated.count == 1
+        phonemes = [phonemes]
+      end
       
       {:word => word,
        :syllables => word_with_syllables_seperated,
