@@ -36,14 +36,14 @@ module Creative
         def self.syllables_in(word)
   	      word_data = Lexicon.lookup(word)
   	      if word_data
-  	        word_data['syllables'].split("-")
+  	        word_data['syllables']
   	      end
         end
 
   	    def self.no_syllables_in(word)
   	      word_data = Lexicon.lookup(word)
   	      if word_data
-  	        word_data['syllables'].split("-").count
+  	        word_data['syllables'].count
   	      end
   	    end
         

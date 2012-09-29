@@ -32,8 +32,6 @@ module LexiconBuilder
                            reject{|w| w =~ /,|;/}.
                            uniq
 
-
-
       phonemes = Pronounce.how_do_i_pronounce(word)
       
       word_with_syllables_seperated, pronouncations = *correct_any_bad_lookups(word, word_with_syllables_seperated, pronouncations)       
@@ -51,7 +49,8 @@ module LexiconBuilder
     
     def correct_any_bad_pronounications(pronouncations, syllables)
       syllables_count = syllables.split("-").count
-      pronouncations.select{|pronouncation| pronouncation.split('-').count == syllables_count}
+      pronouncations.select{|pronouncation| pronouncation.split('-').reject(&:empty?).count == syllables_count}.
+                     map{|pronouncation| pronouncation.split('-') }
     end
     
     def correct_any_bad_lookups(word, syllables, pronouncations)
@@ -67,7 +66,7 @@ module LexiconBuilder
         end
       end
       
-      [syllables, pronouncations]
+      [syllables.split("-"), pronouncations]
     end
     
     private
@@ -88,12 +87,7 @@ namespace :lexicon do
 
     seen = {}
 
-    total_words = LexiconBuilder.haiku_words.count
-    words_processed = 0
-
     LexiconBuilder.haiku_words.each do |word|
-      words_processed = words_processed + 1
-            
       data = LexiconBuilder.lookup(word)
       next unless data
       next if seen[word]
@@ -110,7 +104,6 @@ namespace :lexicon do
       log.flush          
 
       seen[word] = true
-      puts "#{(words_processed.to_f / total_words).round} % completed"
     end
     
     [word_log, error_log, moderation_log].map(&:close)
