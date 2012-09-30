@@ -23,7 +23,6 @@ module Creative
             syllable_count = Lexicon.syllables_in(word).count
              
             phonemes = Lexicon.phonemes_for(word)
-            puts phonemes.inspect
             
             if syllable_count == 1
               phonemes
