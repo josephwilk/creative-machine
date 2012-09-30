@@ -31,7 +31,7 @@ module Creative
 
             #TODO: identify which phonems are associated with this syllable.
             
-            [0] * 67
+            [0] * 66
           end
           
           def binary_lexicon_word_code(word)
