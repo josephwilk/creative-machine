@@ -25,26 +25,28 @@ module NeuralNetwork
         (code[0] - [0] - [1]).should be_empty
       end
       
-      it "should encode the index of the word in the lexicon" do
-        encoder = PoemEncoder.new(lexicon)
+      context "with a one syllable word" do
+        let(:encoded_word) do 
+          encoder = PoemEncoder.new(lexicon)
+          code = encoder.encode(poem)[0]
+        end
+      
+        it "should encode the index of the word in the lexicon" do
+          encoded_word[0..10].should == [0] + binary_list(619)
+        end
+      
+        it "should encode the phonems of the syllable" do
+          phones = [["AA1", "N"]]
+
+          pending "encode phonems"
         
-        code = encoder.encode(poem)
+          encoded_word[11..27].should == ''
+        end
       
-        code[0][0..10].should == [0] + binary_list(619)
-      end
+        def binary_list(number)
+          number.to_s(2).split('').map(&:to_i)
+        end
       
-      it "should encode the phonems of a syllable" do
-        encoder = PoemEncoder.new(lexicon)
-        
-        code = encoder.encode(poem)
-      
-        pending "encode phonems"
-        
-        [["AA1", "N"]]
-      end
-      
-      def binary_list(number)
-        number.to_s(2).split('').map(&:to_i)
       end
             
     end
