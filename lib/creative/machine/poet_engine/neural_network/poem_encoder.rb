@@ -17,7 +17,7 @@ module Creative
           end
 
           def encode(poem)
-            poem.words.reduce([]) {|binary_poem, word| encode_word(word)}
+            poem.words.reduce([]) {|binary_poem, word| binary_poem = binary_poem + encode_word(word)}
           end
           
           def encode_word(word)
@@ -32,12 +32,12 @@ module Creative
             syllable_count = Lexicon.syllables_in(word).count
              
             phonemes = Lexicon.phonemes_for(word)
-            if syllable_count == 1
+            if syllable_count == 1  
               code = encode_phonemes(phonemes[0]).flatten.join
               code = pad(code, BITS_FOR_SYLLABLES)
-              code.split('')
+              code.split('').map(&:to_i)
             else
-              [[0] * BITS_FOR_SYLLABLES]
+              [0] * BITS_FOR_SYLLABLES
             end
           end
           
@@ -47,12 +47,12 @@ module Creative
           # 6th-8th bits represent the seven possible manners of articulation
           # 9th,10th,11th bits represent the five possible heights
           # 12th, 13th bits represent the three possible depths
-          def encode_phonemes(phonemes)
-            phonemes.map do |phone| 
+          def encode_phonemes(phonemes=[])
+            phonemes.reduce([]) do |code, phone| 
               phone_data = Phonems.lookup(phone)
               bit_1 = phone['manner'] == 'vowel' ? 0 : 1
               
-              [bit_1] + [0] * 12
+              code << ([bit_1] + [0] * 12)
             end
           end
           
