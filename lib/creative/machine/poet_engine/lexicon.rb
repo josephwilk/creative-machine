@@ -30,6 +30,7 @@ module Creative
 
         def self.phonemes_for(word)
   	      word_data = Lexicon.lookup(word)
+          raise Exception.new("No Phonemes for word: #{word}") if word_data['phonemes'] == [nil]
   	      word_data ? word_data['phonemes'] : []
         end
         
