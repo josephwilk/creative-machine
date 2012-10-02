@@ -32,13 +32,13 @@ module NeuralNetwork
         end
       
         it "should encode the index of the word in the lexicon" do
-          encoded_word[PoemEncoder::LEXICON_BITS].should == [0] + binary_list(619)
+          encoded_word[PoemEncoder::LEXICON_BITS].should == [0] + binary_list(617)
         end
       
         it "should encode the phonems of the syllable" do
           phones = [["AA1", "N"]]
         
-          encoded_word[PoemEncoder::SYLLABLE_BITS].should == ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0"]
+          encoded_word[PoemEncoder::SYLLABLE_BITS].should == [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
         end
       
         def binary_list(number)
