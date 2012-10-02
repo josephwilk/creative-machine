@@ -633,7 +633,6 @@
 {"word":"spread","syllables":["spread"],"pronouncations":[["spred"]],"phonemes":[["S","P","R","EH1","D"]]}
 {"word":"open","syllables":["o","pen"],"pronouncations":[["oh","puhn"]],"phonemes":["OW1","P","AH0","N"]}
 {"word":"chestnut","syllables":["chest","nut"],"pronouncations":[["ches","nuht"]],"phonemes":["CH","EH1","S","N","AH2","T"]}
-{"word":"burs","syllables":["burs"],"pronouncations":[["burs"]],"phonemes":[null]}
 {"word":"chestnuts","syllables":["chest","nuts"],"pronouncations":[["ches","nuhts"]],"phonemes":["CH","EH1","S","N","AH0","T","S"]}
 {"word":"person","syllables":["per","son"],"pronouncations":[["pur","suhn"]],"phonemes":["P","ER1","S","AH0","N"]}
 {"word":"souvenir","syllables":["sou","ve","nir"],"pronouncations":[["soo","vuh","neer"]],"phonemes":["S","UW2","V","AH0","N","IH1","R"]}
@@ -699,7 +698,6 @@
 {"word":"bites","syllables":["bites"],"pronouncations":[["bahyts"]],"phonemes":[["B","AY1","T","S"]]}
 {"word":"dream","syllables":["dream"],"pronouncations":[["dreem"]],"phonemes":[["D","R","IY1","M"]]}
 {"word":"rooms","syllables":["rooms"],"pronouncations":[["rooms"]],"phonemes":[["R","UW1","M","Z"]]}
-{"word":"boars","syllables":["boars"],"pronouncations":[["bawrs"],["bohrs"]],"phonemes":[null]}
 {"word":"blown","syllables":["blown"],"pronouncations":[["blohn"],["bloh"]],"phonemes":[["B","L","OW1","N"]]}
 {"word":"rocks","syllables":["rocks"],"pronouncations":[["roks"]],"phonemes":[["R","AA1","K","S"]]}
 {"word":"rocky","syllables":["rock","y"],"pronouncations":[["rok","ee"]],"phonemes":["R","AA1","K","IY0"]}
@@ -1046,7 +1044,6 @@
 {"word":"alive","syllables":["a","live"],"pronouncations":[["uh","lahyv"]],"phonemes":["AH0","L","AY1","V"]}
 {"word":"lice","syllables":["lice"],"pronouncations":[["lahys"],["lous"],["louz"]],"phonemes":[["L","AY1","S"]]}
 {"word":"fleas","syllables":["fleas"],"pronouncations":[["flees"]],"phonemes":[["F","L","IY1","Z"]]}
-{"word":"pees","syllables":["pees"],"pronouncations":[["pees"]],"phonemes":[null]}
 {"word":"poor","syllables":["poor"],"pronouncations":[["poor"],["oo"],["shoor"],["pawr"],["shawr"],["pohr"],["shohr"],["aw"],["oh"]],"phonemes":[["P","UW1","R"]]}
 {"word":"hovel","syllables":["hov","el"],"pronouncations":[["huhv","uhl"]],"phonemes":["HH","AH1","V","AH0","L"]}
 {"word":"can","syllables":["can"],"pronouncations":[["kan"],["kuhn"]],"phonemes":[["K","AE1","N"]]}
