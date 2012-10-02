@@ -1,5 +1,7 @@
 # Creative Machine
 
+[![Build Status](https://secure.travis-ci.org/josephwilk/creative-machine.png)](http://travis-ci.org/josephwilk/creative-machine)
+
 ##Defining Creativity
 
 Creativity has two categories: 
