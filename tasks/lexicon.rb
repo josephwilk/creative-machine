@@ -38,7 +38,7 @@ module LexiconBuilder
 
       pronouncations = correct_any_bad_pronounications(pronouncations, word_with_syllables_seperated)
 
-      if word_with_syllables_seperated.count == 1
+      if word_with_syllables_seperated.count == 1 && phonemes
         phonemes = [phonemes]
       end
       
