@@ -65,7 +65,7 @@
 "OY2": {"manner": "vowel", "stress": "secondary"},
 "P":   {"manner": "stop", "stress": "none"},
 "R":   {"manner": "liquid", "stress": "none"},
-"S":   {"manner": "fricative", "stress": "none"},
+"S":   {"manner": "fricative", "stress": "none", "voiced": false},
 "SH":  {"manner": "fricative", "stress": "none"},
 "T":   {"manner": "stop", "stress": "none"},
 "TH":  {"manner": "fricative", "stress": "none"},
@@ -80,6 +80,6 @@
 "V":   {"manner": "fricative", "stress": "none"},
 "W":   {"manner": "semivowel", "stress": "none"},
 "Y":   {"manner": "semivowel", "stress": "none"},
-"Z":   {"manner": "fricative", "stress": "none"},
+"Z":   {"manner": "fricative", "stress": "none", "voiced": true},
 "ZH":  {"manner": "fricative", "stress": "none"}
 }
