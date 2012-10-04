@@ -1,8 +1,16 @@
 # Creative Machine
 
+Creating Machines capable of creativity.
+
 [![Build Status](https://secure.travis-ci.org/josephwilk/creative-machine.png)](http://travis-ci.org/josephwilk/creative-machine)
 
-##Defining Creativity
+### Making Art
+
+<pre><code>rake art:haiku</code></pre>
+
+## Background
+
+###Defining Creativity
 
 Creativity has two categories: 
 * P-creativity (psychological) - individual comes up with an idea that they have never thought of before
@@ -17,7 +25,7 @@ Novelty:
 Creativity:
 > a creative idea is one that could not occur before.
 
-###References:
+####References:
 * [1] Computer Creativity http://www.golgotha.org.uk/academic/csmart02.html 
 * [2] Can Computers be Creative? How? http://aitopics.net/Creativity
 * [3] Formal Theory of Creativity & Fun & Intrinsic Motivation http://www.idsia.ch/~juergen/creativity.html
