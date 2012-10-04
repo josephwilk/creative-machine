@@ -12,6 +12,8 @@ module Creative
           LEXICON_BITS = 0..BITS_FOR_LEXICON_INDEX-1
           SYLLABLE_BITS = BITS_FOR_LEXICON_INDEX+1..BITS_FOR_SYLLABLES
           
+          ARTICULATIONS = %W{fricative vowel stop liquid nasal affricate aspirate}
+          
           def initialize(lexicon)
             @lexicon = lexicon
           end
@@ -50,23 +52,36 @@ module Creative
           def encode_phonemes(phonemes=[])
             phonemes.reduce([]) do |code, phone| 
               phone_data = Phonems.lookup(phone)
-              bit_1 = phone['manner'] == 'vowel' ? 0 : 1
-              bit_2 = phone['voiceless'] == true ? 0 : 1 
+              bit_1 = phone_data['manner'] == 'vowel' ? 0 : 1
+              bit_2 = phone_data['voiceless'] == true ? 0 : 1 
+              bit_6_7_8 = encode_articulation(phone_data['manner'])
               
-              code << ([bit_1, bit_2] + [0] * 12)
+              code << [bit_1, bit_2, 0, 0, 0, *bit_6_7_8, 0, 0, 0, 0]
             end
+          end
+
+          def encode_articulation(articulation)
+            articulation = 'vowel' if articulation == 'semivowel'
+            raise "Invalid articulation: [#{articulation}]" unless ARTICULATIONS.include?(articulation)
+
+            index = ARTICULATIONS.rindex(articulation)
+            pad(to_binary(index), 3)
           end
           
           def binary_lexicon_word_code(word)
             index = @lexicon.index(word)
             raise Exception.new("Cannot find word in lexicon: #{word}") unless index
-            index_binary = index.to_s(2).split('').map(&:to_i)
+            index_binary = to_binary(index)
             pad(index_binary, BITS_FOR_LEXICON_INDEX)
           end
           
           def pad(input, size)
             pad_length = size - input.length
             pad_length > 0 ? ([0] * pad_length) + input : input
+          end
+          
+          def to_binary(number)
+            number.to_i.to_s(2).split('').map(&:to_i)
           end
 
         end
