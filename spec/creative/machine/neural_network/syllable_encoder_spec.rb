@@ -8,7 +8,7 @@ module NeuralNetwork
   describe SyllableEncoder do
     describe ".encode" do
 
-      it "should encoode a syllable with 66 bits" do
+      it "should encode a syllable with 66 bits" do
         encoder = SyllableEncoder.new
         
         code = encoder.encode('on','on', 0)
