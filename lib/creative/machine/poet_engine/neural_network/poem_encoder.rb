@@ -20,6 +20,8 @@ module Creative
             poem.words.reduce([]) {|binary_poem, word| binary_poem = binary_poem + encode_word(word)}
           end
           
+          private
+          
           def encode_word(word)
             lexicon_index_in_binary = binary_lexicon_word_code(word)
             Lexicon.syllables_in(word).each_with_index.map {|syllable, syllable_index| 
@@ -49,8 +51,9 @@ module Creative
             phonemes.reduce([]) do |code, phone| 
               phone_data = Phonems.lookup(phone)
               bit_1 = phone['manner'] == 'vowel' ? 0 : 1
+              bit_2 = phone['voiceless'] == true ? 0 : 1 
               
-              code << ([bit_1] + [0] * 12)
+              code << ([bit_1, bit_2] + [0] * 12)
             end
           end
           
