@@ -16,7 +16,10 @@ module Creative
           def encode(word, syllable, syllable_index)
             syllable_count = Lexicon.syllables_in(word).count
             
-            if syllable_count == 1
+            phonemes_list = Lexicon.phonemes_for(word)
+            
+            #While we some phonems not grouped by syllables
+            if phonemes_list.reduce(false){|listey, phone| listey ||= phone.is_a?(Array)}
               phonems = syllable_phonems(word, syllable_index)
               syllable_encoded_as_binary(syllable, phonems)
             else
