@@ -9,7 +9,16 @@ module Creative
 
         class PhonemEncoder
           ARTICULATIONS = %W{fricative vowel stop liquid nasal affricate aspirate}
+          PLACE_OF_ARTICULATION = %W{bilabial alveolar velar labiodental palatal interdental glottal}
+          HEIGHT = %W{high low-high mid low-mid low diphthong}
+          DEPTH = %W{back front central}
+          
           BITS_FOR_PHONEM = 13
+
+          def self.stressed_phonem?(phone)
+            phone_data = Phonems.lookup(phone)
+            phone_data['stress'] == 'primary'
+          end
 
           def encode(phone)
             phone_data = Phonems.lookup(phone)
@@ -20,29 +29,44 @@ module Creative
           end
           
           private
-
-          # 1st bit represents the parameter of consonant/vowel
-          # 2nd bit represents the parameter of voiced/voiceless
-          # 3rd-5th bits represent the seven possible places of articulation
-          # 6th-8th bits represent the seven possible manners of articulation
-          # 9th,10th,11th bits represent the five possible heights
-          # 12th, 13th bits represent the three possible depths
+          
           def binary_code_for(phone_data)
             bit_1 = phone_data['manner'] == 'vowel' ? 0 : 1
             bit_2 = phone_data['voiceless'] == true ? 0 : 1 
-            bit_3_4_5 = [0, 0, 0] 
-            bit_6_7_8 = encode_articulation(phone_data['manner'])
-            bit_9_10_11 = [0, 0, 0]
-            bit_12_13 = [0, 0]
+            bit_3_4_5 = encode_place_of_articulation(phone_data['point'])
+            bit_6_7_8 = encode_manner_of_articulation(phone_data['manner'])
+            bit_9_10_11 = encode_height(phone_data['height'])
+            bit_12_13 = encode_depth(phone_data['depth'])
               
             [bit_1, bit_2, *bit_3_4_5, *bit_6_7_8, *bit_9_10_11, *bit_12_13]
           end
 
-          def encode_articulation(articulation)
-            articulation = 'vowel' if articulation == 'semivowel'
-            raise "Invalid articulation: [#{articulation}]" unless ARTICULATIONS.include?(articulation)
+          def encode_height(height)
+            return [0, 0, 0] unless HEIGHT.include?(height)
+            
+            index = HEIGHT.rindex(height) + 1
+            pad(to_binary(index), 3)
+          end
+          
+          def encode_depth(depth)
+            return [0, 0] unless DEPTH.include?(depth)
+            
+            index = HEIGHT.rindex(depth) + 1
+            pad(to_binary(index), 2)
+          end
+          
+          def encode_place_of_articulation(point)
+            return [0, 0, 0] unless PLACE_OF_ARTICULATION.include?(point)
 
-            index = ARTICULATIONS.rindex(articulation)
+            index = PLACE_OF_ARTICULATION.rindex(point) + 1
+            pad(to_binary(index), 3)
+          end
+
+          def encode_manner_of_articulation(articulation)
+            articulation = 'vowel' if articulation == 'semivowel'
+            return [0, 0, 0] unless ARTICULATIONS.include?(articulation)
+
+            index = ARTICULATIONS.rindex(articulation) + 1
             pad(to_binary(index), 3)
           end
           
