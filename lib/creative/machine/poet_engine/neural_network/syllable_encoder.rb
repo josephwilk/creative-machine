@@ -28,7 +28,7 @@ module Creative
           def syllable_encoded_as_binary(syllable, syllable_phonems)
             encoded_phonems = syllable_phonems.map{|phone| @phonem_encoder.encode(phone)}
             encoded_syllable = syllable_encoding(syllable_phonems, encoded_phonems).flatten
-            encoded_syllable + stressed?(syllable)
+            encoded_syllable + stressed?(syllable_phonems)
           end
 
           def syllable_phonems(word, syllable_index)
@@ -36,8 +36,12 @@ module Creative
             phonemes_list[syllable_index]
           end
           
-          def stressed?(syllable)
-            [0]
+          def stressed?(syllable_phonems)
+            if syllable_phonems.reduce(false){|stressed, phone| stressed ||= PhonemEncoder.stressed_phonem?(phone)}
+              [1]
+            else
+              [0]
+            end
           end
           
           def syllable_encoding(phonems_for_syllable, encoded_phonems)
