@@ -21,8 +21,12 @@ module Creative
             #While we some phonems not grouped by syllables
             if phonemes_list.reduce(false){|listey, phone| listey ||= phone.is_a?(Array)}
               phonems = syllable_phonems(word, syllable_index)
+              
+              raise "no phonems for [#{word}] syllable [#{syllable_index}]" unless phonems
+              
               syllable_encoded_as_binary(syllable, phonems)
             else
+              puts "Skipping [#{word}]"
               [0] * BITS_FOR_SYLLABLES
             end
           end
