@@ -525,8 +525,8 @@
 {"word":"visiting","syllables":["vis","it","ing"],"pronouncations":[["viz","it","ing"]],"phonemes":["V","IH1","Z","AH0","T","IH0","NG"]}
 {"word":"graves","syllables":["Graves"],"pronouncations":[["greyvz"],["grahv"],["grav"],["greyv"]],"phonemes":[["G","R","EY1","V","Z"]]}
 {"word":"souls","syllables":["souls"],"pronouncations":[["sohls"]],"phonemes":[["S","OW1","L","Z"]]}
-{"word":"festival","syllables":["fes","ti","val"],"pronouncations":[["fes","tuh","vuhl"]],"phonemes":["F","EH1","S","T","AH0","V","AH0","L"]}
-{"word":"today","syllables":["to","day"],"pronouncations":[["tuh","dey"]],"phonemes":["T","AH0","D","EY1"]}
+{"word":"festival","syllables":["fes","ti","val"],"pronouncations":[["fes","tuh","vuhl"]],"phonemes":[["F","EH1","S"],["T","AH0"],["V","AH0","L"]]}
+{"word":"today","syllables":["to","day"],"pronouncations":[["tuh","dey"]],"phonemes":[["T","AH0"],["D","EY1"]]}
 {"word":"also","syllables":["al","so"],"pronouncations":[["awl","soh"]],"phonemes":["AO1","L","S","OW0"]}
 {"word":"smoke","syllables":["smoke"],"pronouncations":[["smohk"]],"phonemes":[["S","M","OW1","K"]]}
 {"word":"lotus","syllables":["lo","tus"],"pronouncations":[["loh","tuhs"]],"phonemes":["L","OW1","T","AH0","S"]}
