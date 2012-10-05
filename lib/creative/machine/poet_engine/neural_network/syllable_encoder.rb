@@ -15,17 +15,82 @@ module Creative
           
           def encode(word, syllable, syllable_index)
             syllable_count = Lexicon.syllables_in(word).count
-             
-            phonemes_list = Lexicon.phonemes_for(word)
+            
             if syllable_count == 1
-              syllable_code = phonemes_list.flatten.reduce([]) {|code, phone| code << @phonem_encoder.encode(phone) }
-              pad(syllable_code.flatten, BITS_FOR_SYLLABLES)
+              phonems = syllable_phonems(word, syllable_index)
+              syllable_encoded_as_binary(syllable, phonems)
             else
               [0] * BITS_FOR_SYLLABLES
             end
           end
-          
+
           private
+          def syllable_encoded_as_binary(syllable, syllable_phonems)
+            encoded_phonems = syllable_phonems.map{|phone| @phonem_encoder.encode(phone)}
+
+            syllable_encoding(syllable_phonems, encoded_phonems).flatten + stressed?(syllable)
+          end
+
+          def syllable_phonems(word, syllable_index)
+            phonemes_list = Lexicon.phonemes_for(word)
+            phonemes_list[syllable_index]
+          end
+          
+          def stressed?(syllable)
+            [0]
+          end
+          
+          def syllable_encoding(phonems_for_syllable, encoded_phonems)
+            case structure_of(phonems_for_syllable)
+            when [:c, :c, :v, :c, :c]
+              encoded_phonems
+            when [:c, :c, :v, :c, :c, :c]
+              [encoded_phonems[0], encoded_phonems[1], encoded_phonems[2], encoded_phonems[4], encoded_phonems[5]]
+            when [:c, :v, :c, :c, :c]
+              [empty_binary, encoded_phonems[0], encoded_phonems[1], encoded_phonems[3], encoded_phonems[4]]
+            when [:v, :c, :c, :c]
+              [empty_binary, empty_binary, encoded_phonems[0], encoded_phonems[2], encoded_phonems[3]]
+            when [:c, :c, :c, :v, :c, :c]
+              [encoded_phonems[0], encoded_phonems[2], encoded_phonems[3], encoded_phonems[4], encoded_phonems[5]]
+            when [:c, :c, :c, :v, :c]
+              [encoded_phonems[0], encoded_phonems[2], encoded_phonems[3], encoded_phonems[4], empty_binary]
+            when [:c, :c, :c, :v]
+              [encoded_phonems[0], encoded_phonems[2], encoded_phonems[3], empty_binary, empty_binary]
+            when [:c, :c, :v, :c]
+               encoded_phonems + [empty_binary]
+            when [:c, :v, :c, :c]
+              [empty_binary] + encoded_phonems
+            when [:c, :v, :c]
+               [empty_binary] + encoded_phonems + [empty_binary]
+            when [:c, :c, :v]
+               encoded_phonems + [empty_binary, empty_binary]
+            when [:v, :c, :c]
+              [empty_binary, empty_binary] + encoded_phonems
+            when [:c, :v]
+              [empty_binary] + encoded_phonems + [empty_binary, empty_binary]
+            when [:v, :c]
+              [empty_binary, empty_binary] + encoded_phonems + [empty_binary]
+            when [:v]
+              [empty_binary, empty_binary] + encoded_phonems + [empty_binary, empty_binary]
+            when [:c]
+              encoded_phonems + [empty_binary, empty_binary, empty_binary, empty_binary]
+            else
+              [empty_binary] * 5
+            end
+          end
+          
+          def empty_binary
+            [0] * 13
+          end
+          
+          def structure_of(phonems_for_syllable)
+            phonems_for_syllable.map{|phone| vowel?(phone) ? :v : :c }
+          end
+          
+          def vowel?(phone)
+            vowels = %W{a e i o u}
+            vowels.include?(phone[0].downcase)
+          end
           
           def pad(input, size)
             pad_length = size - input.length
