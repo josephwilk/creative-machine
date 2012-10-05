@@ -1,10 +1,11 @@
 require 'ruby_fann/neural_network'
+require 'json'
+
 require 'creative/machine/poet_engine/neural_network'
 require 'creative/machine/poet_engine/rhymer'
 require 'creative/machine/poet_engine/evolution/mutator'
 require 'creative/machine/poet_engine/evolution/crossover'
 require 'creative/machine/poet_engine/lexicon'
-require 'json'
 
 #Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
@@ -98,7 +99,7 @@ module Machine
     def initialize(lexicon)
       @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
       @neural_network = RubyFann::Standard.new(:num_inputs => 77, 
-                                               :hidden_neurons => [2, 8, 4, 3, 4], 
+                                               :hidden_neurons => 40.times.map{|x| rand(1..10)},
                                                :num_outputs => 1)
     end
     
