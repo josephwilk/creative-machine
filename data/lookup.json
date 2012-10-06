@@ -195,7 +195,7 @@
 {"word":"winds","syllables":["winds"],"pronouncations":[["winds"],["wahynds"]],"phonemes":[["W","IH1","N","D","Z"]]}
 {"word":"bring","syllables":["bring"],"pronouncations":[["bring"]],"phonemes":[["B","R","IH1","NG"]]}
 {"word":"petals","syllables":["pet","als"],"pronouncations":[["pet","ls"]],"phonemes":["P","EH1","T","AH0","L","Z"]}
-{"word":"cherry","syllables":["cher","ry"],"pronouncations":[["cher","ee"]],"phonemes":["CH","EH1","R","IY0"]}
+{"word":"cherry","syllables":["cher","ry"],"pronouncations":[["cher","ee"]],"phonemes":[["CH","EH1","R"],["IY0"]]}
 {"word":"grebe","syllables":["grebe"],"pronouncations":[["greeb"]],"phonemes":[["G","R","IY1","B"]]}
 {"word":"lake","syllables":["lake"],"pronouncations":[["leyk"]],"phonemes":[["L","EY1","K"]]}
 {"word":"under","syllables":["un","der"],"pronouncations":[["uhn","der"]],"phonemes":["AH1","N","D","ER0"]}
@@ -217,7 +217,7 @@
 {"word":"appears","syllables":["ap","pears"],"pronouncations":[["uh","peers"]],"phonemes":["AH0","P","IH1","R","Z"]}
 {"word":"noble","syllables":["no","ble"],"pronouncations":[["noh","buhl"]],"phonemes":["N","OW1","B","AH0","L"]}
 {"word":"stands","syllables":["stands"],"pronouncations":[["stands"]],"phonemes":[["S","T","AE1","N","D","Z"]]}
-{"word":"even","syllables":["e","ven"],"pronouncations":[["ee","vuhn"],["ey","wuhn"],["ev","uhn"]],"phonemes":["IY1","V","IH0","N"]}
+{"word":"even","syllables":["e","ven"],"pronouncations":[["ee","vuhn"],["ey","wuhn"],["ev","uhn"]],"phonemes":[["IY1"],["V","IH0","N"]]}
 {"word":"blossom","syllables":["blos","som"],"pronouncations":[["blos","uhm"]],"phonemes":["B","L","AA1","S","AH0","M"]}
 {"word":"time","syllables":["time"],"pronouncations":[["tahym"]],"phonemes":[["T","AY1","M"]]}
 {"word":"trees","syllables":["trees"],"pronouncations":[["trees"]],"phonemes":[["T","R","IY1","Z"]]}
