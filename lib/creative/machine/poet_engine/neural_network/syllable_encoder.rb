@@ -18,7 +18,7 @@ module Creative
             
             phonemes_list = Lexicon.phonemes_for(word)
             
-            #While we some phonems not grouped by syllables
+            #While we have some phonems not grouped by syllables
             if phonemes_list.reduce(false){|listey, phone| listey ||= phone.is_a?(Array)}
               phonems = syllable_phonems(word, syllable_index)
               
