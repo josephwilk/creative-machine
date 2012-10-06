@@ -1,4 +1,4 @@
-require 'creative/machine/poet_engine/phonems'
+require 'creative/machine/poet_engine/phonemes'
 
 module Creative
   module Machine

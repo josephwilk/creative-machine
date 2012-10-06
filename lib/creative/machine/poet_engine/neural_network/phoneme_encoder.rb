@@ -1,4 +1,4 @@
-require 'creative/machine/poet_engine/phonems'
+require 'creative/machine/poet_engine/phonemes'
 
 module Creative
   module Machine
@@ -7,21 +7,21 @@ module Creative
 
         class InvalidPhone < Exception; end;
 
-        class PhonemEncoder
+        class PhonemeEncoder
           ARTICULATIONS = %W{fricative vowel stop liquid nasal affricate aspirate}
           PLACE_OF_ARTICULATION = %W{bilabial alveolar velar labiodental palatal interdental glottal}
           HEIGHT = %W{high low-high mid low-mid low diphthong}
           DEPTH = %W{back front central}
           
-          BITS_FOR_PHONEM = 13
+          BITS_FOR_PHONEME = 13
 
-          def self.stressed_phonem?(phone)
-            phone_data = Phonems.lookup(phone)
+          def self.stressed_phoneme?(phone)
+            phone_data = Phonemes.lookup(phone)
             phone_data['stress'] == 'primary'
           end
 
           def encode(phone)
-            phone_data = Phonems.lookup(phone)
+            phone_data = Phonemes.lookup(phone)
             
             raise InvalidPhone.new("Invalid phone: [#{phone}]") unless phone_data
             

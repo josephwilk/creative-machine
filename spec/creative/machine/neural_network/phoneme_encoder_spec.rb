@@ -5,20 +5,20 @@ module Machine
 module PoetEngine
 module NeuralNetwork
   
-  describe PhonemEncoder do
+  describe PhonemeEncoder do
     describe ".encode" do
 
-      it "should encode a phonem with 13 bits" do
-        encoder = PhonemEncoder.new
+      it "should encode a phoneme with 13 bits" do
+        encoder = PhonemeEncoder.new
         
         code = encoder.encode('AH1')
         
         code.should have(13).bits
       end
       
-      context "with a bad phonem" do
+      context "with a bad phoneme" do
         it "should raise an error" do
-          encoder = PhonemEncoder.new
+          encoder = PhonemeEncoder.new
         
           lambda{
             code = encoder.encode('MOOOOOOOOOOOO')
