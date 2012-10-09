@@ -5,8 +5,6 @@ module Creative
     module PoetEngine
       module NeuralNetwork
 
-        class InvalidPhone < Exception; end;
-
         class PhonemeEncoder
           ARTICULATIONS = %W{fricative vowel stop liquid nasal affricate aspirate}
           PLACE_OF_ARTICULATION = %W{bilabial alveolar velar labiodental palatal interdental glottal}
@@ -22,9 +20,6 @@ module Creative
 
           def encode(phone)
             phone_data = Phonemes.lookup(phone)
-            
-            raise InvalidPhone.new("Invalid phone: [#{phone}]") unless phone_data
-            
             binary_code_for(phone_data)
           end
           

@@ -22,9 +22,7 @@ module NeuralNetwork
         
           lambda{
             code = encoder.encode('MOOOOOOOOOOOO')
-          }.should raise_error(InvalidPhone)
-        
-          
+          }.should raise_error(Phonemes::InvalidPhoneme)
         end
       end
             

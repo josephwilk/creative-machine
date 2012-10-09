@@ -3,6 +3,8 @@ module Creative
     module PoetEngine
 
   	  class Lexicon
+        class NoPhonemesFound < Exception; end;
+        
         DICTIONARY_FILE = File.dirname(__FILE__) + '/../../../../data/lookup_dictionary.json'
         
         
@@ -30,7 +32,8 @@ module Creative
 
         def self.phonemes_for(word)
   	      word_data = Lexicon.lookup(word)
-          raise Exception.new("No phonemes for word: #{word}") if word_data['phonemes'] == [nil]
+          raise NoPhonemesFound.new("No phonemes for word: #{word}") if word_data['phonemes'] == [nil]
+
   	      word_data ? word_data['phonemes'] : []
         end
         
