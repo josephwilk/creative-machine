@@ -29,3 +29,14 @@ namespace :art do
     puts poems[0]
   end
 end
+
+namespace :learn do
+  task :start do
+    require 'tlearn'
+    tlearn = TLearn::Run.new({})
+
+    data = [[]]
+
+    tlearn.train(data)
+  end
+end
