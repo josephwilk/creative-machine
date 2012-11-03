@@ -12,6 +12,10 @@ module Creative
             tlearn = TLearn::Run.new(config)
             ratings = tlearn.fitness(input)
             ratings[0]
+
+          #NOTE: While we are connecting TLearn ensure everything else still works
+          rescue TLearn::RunTLearn::UntrainedError
+            0
           end
 
           private
