@@ -98,9 +98,7 @@ module Machine
   class Evaluator
     def initialize(lexicon)
       @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
-      @neural_network = RubyFann::Standard.new(:num_inputs => 77, 
-                                               :hidden_neurons => 40.times.map{|x| rand(1..10)},
-                                               :num_outputs => 1)
+      @neural_network = PoetEngine::NeuralNetwork
     end
     
     def survivors(population)
@@ -113,7 +111,7 @@ module Machine
     def score_poems(population)
       population.map do |poem|
         inputs = @poem_encoder.encode(poem)
-        score = inputs.reduce(0){|score, input| score += @neural_network.run(input)[0]}
+        score = inputs.reduce(0){|score, input| score += @neural_network.score(input)}
 
         [poem, score]
       end
