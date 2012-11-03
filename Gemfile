@@ -6,6 +6,7 @@ gem 'pronounce'
 gem 'rake'
 
 gem 'tlearn'
+gem 'twitter'
 
 group :test do
   gem 'rspec'
