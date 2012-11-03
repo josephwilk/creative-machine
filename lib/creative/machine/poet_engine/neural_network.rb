@@ -20,6 +20,7 @@ module Creative
 
           def config
             {:number_of_nodes => 86,
+             :selected => 1..86,
              :output_nodes    => 41..46,
              :linear          => 47..86,
              :weight_limit    => 1.00,
