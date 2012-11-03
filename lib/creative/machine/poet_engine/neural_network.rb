@@ -18,8 +18,6 @@ module Creative
             0
           end
 
-          private
-
           def config
             {:number_of_nodes => 86,
              :output_nodes    => 41..46,

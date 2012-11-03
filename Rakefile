@@ -33,7 +33,7 @@ end
 namespace :learn do
   task :start do
     require 'tlearn'
-    tlearn = TLearn::Run.new({})
+    tlearn = TLearn::Run.new(module Creative::Machine::PoetEngine::NeuralNetwork.config)
 
     data = [[]]
 
