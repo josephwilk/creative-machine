@@ -10,12 +10,12 @@ module Creative
         class << self
           def score(input)
             tlearn = TLearn::Run.new(config)
-            ratings = tlearn.fitness(input)
-            ratings[0]
-
-          #NOTE: While we are connecting TLearn ensure everything else still works
-          rescue TLearn::RunTLearn::UntrainedError
-            0
+            ratings = tlearn.fitness(input, iterations = 10, path = "data/weights")
+            if ratings
+              rank = ratings.rindex(ratings.max) + 1
+            else
+              0
+            end
           end
 
           def config
