@@ -97,16 +97,6 @@ module Machine
     SYLLABLES_PER_LINE = [5, 7, 5]
   end
   
-  class Limerick < Poem
-    SOURCE_WORDS_FILE = File.dirname(__FILE__) + "/../../../data/poems.txt"
-    
-    LINES = 5
-    #Five lines. 
-    #Third and fourth lines rhyme and share a fixed rhythm
-    #First, second and fifth share a rhyme and different fixed rhythm.
-    #5th line punch line,
-  end
-  
   class Evaluator
     def initialize(lexicon)
       @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
