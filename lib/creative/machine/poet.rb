@@ -1,4 +1,3 @@
-require 'ruby_fann/neural_network'
 require 'json'
 
 require 'creative/machine/poet_engine/neural_network'
