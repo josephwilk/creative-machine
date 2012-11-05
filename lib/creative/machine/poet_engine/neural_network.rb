@@ -16,6 +16,9 @@ module Creative
             else
               0
             end
+
+          rescue TLearn::RunTLearn::UntrainedError
+            0
           end
 
           def config
