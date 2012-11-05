@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/spec_helper'
 
 module Creative
 module Machine
@@ -7,7 +7,6 @@ module Machine
     it "should create creative poems" do
       poet = Creative::Machine::Poet.new
       poems = poet.evolve()
-      poems.each {|poem| puts poem, ""}
     end
   end
   
