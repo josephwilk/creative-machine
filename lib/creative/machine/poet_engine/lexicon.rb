@@ -72,6 +72,16 @@ module Creative
   	      end
   	      poem_words
   	    end
+
+        def pick_word(syllable_count)
+          word = nil
+          while(!word)
+            candiate_word = clean(words.sample)
+	          next unless candiate_word
+            word = candiate_word if Lexicon.no_syllables_in(candiate_word) == syllable_count
+          end
+          word
+        end
     
   	    def words
   	      @words ||= begin

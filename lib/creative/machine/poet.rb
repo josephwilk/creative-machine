@@ -76,6 +76,10 @@ module Machine
     def []=(index, value)
       @lines[index] = value
     end
+    
+    def length
+      @lines.length
+    end
 
     def words
       @lines.flatten

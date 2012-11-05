@@ -16,6 +16,15 @@ module Creative
           end
 
           def word_mutation(poem)
+            line_index = rand(poem.length)
+            line = poem[line_index]
+
+            word_index = rand(line.length)
+            word = line[word_index]
+
+            new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
+            line[word_index] = new_word
+
             poem
           end
           
