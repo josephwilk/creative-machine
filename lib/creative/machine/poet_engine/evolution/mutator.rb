@@ -30,7 +30,6 @@ module Creative
           
           def line_mutation(poem)
             line_index = rand(poem.length)
-            line = poem[line_index]
 
             syllable_total = Haiku::SYLLABLES_PER_LINE[line_index]
 
