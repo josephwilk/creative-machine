@@ -94,10 +94,11 @@ namespace :lexicon do
     seen = {}
 
     LexiconBuilder.haiku_words.each do |word|
+      print '.'
+      next if seen[word]
       data = LexiconBuilder.lookup(word)
       next unless data
-      next if seen[word]
-      
+
       log = if !data[:phonemes]
         error_log        
       elsif (data[:syllables].join('')).length != word.length
@@ -111,7 +112,8 @@ namespace :lexicon do
 
       seen[word] = true
     end
-    
+    puts
+
     [word_log, error_log, moderation_log].map(&:close)
 
     puts File.expand_path(File.join(tmpdir, 'lookup.json'))
