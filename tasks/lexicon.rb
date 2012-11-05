@@ -84,10 +84,12 @@ end
 
 namespace :lexicon do  
   desc "map words to syllables/pronuciation/emphasis"
-  task :build => [:format_lookup] do
-    error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
-    moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
-    word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
+  task :build do
+    tmpdir = File.join File.dirname(__FILE__), '..', 'tmp'
+    Dir.mkdir tmpdir unless Dir.exists? tmpdir
+    error_log = File.open File.join(tmpdir, 'lookup_fails.json'), 'w'
+    moderation_log = File.open File.join(tmpdir, 'lookup_moderation.json'), 'w'
+    word_log = File.open File.join(tmpdir, 'lookup.json'), 'w'
 
     seen = {}
 
@@ -112,7 +114,9 @@ namespace :lexicon do
     
     [word_log, error_log, moderation_log].map(&:close)
 
-    puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
+    puts File.expand_path(File.join(tmpdir, 'lookup.json'))
+
+    Rake::Task['lexicon:format_lookup'].invoke
   end
   
   desc "process moderation"
