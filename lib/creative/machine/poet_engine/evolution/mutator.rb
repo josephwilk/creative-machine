@@ -29,6 +29,14 @@ module Creative
           end
           
           def line_mutation(poem)
+            line_index = rand(poem.length)
+            line = poem[line_index]
+
+            syllable_total = Haiku::SYLLABLES_PER_LINE[line_index]
+
+            new_line = @lexicon.pick_words(syllable_total)
+
+            poem[line_index] = new_line
             poem
           end
           
