@@ -69,6 +69,14 @@ module Machine
       @lines = lines
     end
     
+    def [](index)
+      @lines[index]
+    end
+
+    def []=(index, value)
+      @lines[index] = value
+    end
+
     def words
       @lines.flatten
     end
@@ -104,7 +112,7 @@ module Machine
     def survivors(population)
       score_poems(population).
       select{|(poem, score)| survivor?(poem, score)}.
-      map{|(poem, score)| p poem, score, "\n"; poem}
+      map{|(poem, score)| puts poem, score, "\n"; poem}
     end
     
     private
