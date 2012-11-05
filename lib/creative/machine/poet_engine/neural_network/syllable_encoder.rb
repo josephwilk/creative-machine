@@ -23,7 +23,7 @@ module Creative
               phonemes = syllable_phonemes(word, syllable_index)
               syllable_encoded_as_binary(syllable, phonemes)
             else
-              puts "Skipping [#{word}]"
+              #Skipping word
               [0] * BITS_FOR_SYLLABLES
             end
           end

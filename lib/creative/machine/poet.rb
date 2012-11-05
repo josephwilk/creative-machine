@@ -7,7 +7,7 @@ require 'creative/machine/poet_engine/evolution/mutator'
 require 'creative/machine/poet_engine/evolution/crossover'
 require 'creative/machine/poet_engine/lexicon'
 
-#Creative poet: Based on www.ncbi.nlm.nih.gov/pubmed/18677746
+#Based on ideas from www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
 module Machine
   class Poet
@@ -103,8 +103,8 @@ module Machine
     
     def survivors(population)
       score_poems(population).
-      select{|(poem, score)| survivor?(poem, score) }.
-      map{|(poem, score)| poem }
+      select{|(poem, score)| survivor?(poem, score)}.
+      map{|(poem, score)| p poem, score, "\n"; poem}
     end
     
     private
@@ -118,7 +118,7 @@ module Machine
     end
     
     def survivor?(poem, score)
-      true
+      score > 30
     end
   end
     
