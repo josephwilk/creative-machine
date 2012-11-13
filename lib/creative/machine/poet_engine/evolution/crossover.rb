@@ -3,6 +3,7 @@ module Creative
     module PoetEngine
       module Evolution
         class Crossover
+          CROSSOVER_LIKELIHOOD = 40
         
           class << self
             def crossover(poem_1, poem_2)
@@ -26,7 +27,7 @@ module Creative
 
             private
             def crossover?
-              rand(2) == 1 ? true : false
+              rand(1..100) <= CROSSOVER_LIKELIHOOD ? true : false
             end
           
           end
