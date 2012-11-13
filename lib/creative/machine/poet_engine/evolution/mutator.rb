@@ -3,6 +3,7 @@ module Creative
     module PoetEngine
       module Evolution
         class Mutator
+          MUTATION_LIKELIHOOD = 60
 
           def initialize(lexicon)
             @lexicon = lexicon
@@ -41,7 +42,7 @@ module Creative
           
           private
           def mutate?
-            rand(2) == 1 ? true : false
+            rand(1..100) <= MUTATION_LIKELIHOOD ? true : false
           end
 
         end
