@@ -812,7 +812,7 @@
 {"word":"miles","syllables":["Miles"],"pronouncations":[["mahylz"],["mahyl"]],"phonemes":[["M","AY1","L","Z"]]}
 {"word":"curve","syllables":["curve"],"pronouncations":[["kurv"]],"phonemes":[["K","ER1","V"]]}
 {"word":"seen","syllables":["seen"],"pronouncations":[["seen"],["see"]],"phonemes":[["S","IY1","N"]]}
-{"word":"rainwater","syllables":["rain","wa","ter"],"pronouncations":[["reyn","waw","ter"]],"phonemes":[["R","EY1","N"],["W","AO2","T","ER0"]]}
+{"word":"rainwater","syllables":["rain","wa","ter"],"pronouncations":[["reyn","waw","ter"]],"phonemes":[["R","EY1","N"],["W","AO2"],["T","ER0"]]}
 {"word":"happy","syllables":["hap","py"],"pronouncations":[["hap","ee"]],"phonemes":[["HH","AE1","P"],["IY0"]]}
 {"word":"although","syllables":["al","though"],"pronouncations":[["awl","thoh"]],"phonemes":[["AO2","L"],["DH","OW1"]]}
 {"word":"mt","syllables":["MT"],"pronouncations":[],"phonemes":[["M","AW1","N","T"]]}
