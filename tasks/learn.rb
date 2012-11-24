@@ -6,7 +6,8 @@ namespace :learn do
     {["of white inscription", "have the to the youth coming",    "not very her at"]         => 1},
     {["ugly bend radish",     "warriors is our autumn",          "take needles shoots the"] => 1},
     {["dripping morning snow","rain violets are striking",       "autumn bites day fresh"]  => 3},
-    {["misty chestnut moon",  "wild embrace that changes night", "like heat on the snow"]   => 6}
+    {["misty chestnut moon",  "wild embrace that changes night", "like heat on the snow"]   => 6},
+    {["resting higher",       "than a lark in the sky",          "a mountain pass"]         => 6}
   ]
   
   def tokenise_haiku(sentences)
