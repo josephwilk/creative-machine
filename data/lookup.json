@@ -81,6 +81,7 @@
 {"word":"night","syllables":["night"],"pronouncations":[["nahyt"]],"phonemes":[["N","AY1","T"]]}
 {"word":"powerful","syllables":["pow","er","ful"],"pronouncations":[["pou","er","fuhl"]],"phonemes":[["P","AW1"],["ER0"],["F","AH0","L"]]}
 {"word":"wind","syllables":["wind"],"pronouncations":[["wind"],["wahynd"]],"phonemes":[["W","AY1","N","D"]]}
+{"word":"embrace","syllables":["em","brace"],"pronouncations":[["em","brey"]],"phonemes":[["EH0","M"],["B","R","EY1","S"]]}
 {"word":"embraces","syllables":["em","braces"],"pronouncations":[["em","breyss"]],"phonemes":[["EH0","M"],["B","R","EY1","S","IH0","Z"]]}
 {"word":"ancient","syllables":["an","cient"],"pronouncations":[["eyn","shuhnt"]],"phonemes":[["EY1","N"],["CH","AH0","N","T"]]}
 {"word":"cedars","syllables":["ce","dars"],"pronouncations":[["see","ders"]],"phonemes":[["S","IY1"],["D","ER0","Z"]]}
