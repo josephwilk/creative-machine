@@ -120,7 +120,7 @@ module Machine
     end
     
     def survivor?(poem, score)
-      score > 30
+      score > 80
     end
   end
     
