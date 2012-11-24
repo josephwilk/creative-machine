@@ -18,14 +18,8 @@ module Creative
             
             phonemes_list = Lexicon.phonemes_for(word)
             
-            #While we have some phonemes not grouped by syllables
-            if phonemes_list.reduce(false){|listey, phone| listey ||= phone.is_a?(Array)}
-              phonemes = syllable_phonemes(word, syllable_index)
-              syllable_encoded_as_binary(syllable, phonemes)
-            else
-              #Skipping word
-              [0] * BITS_FOR_SYLLABLES
-            end
+            phonemes = syllable_phonemes(word, syllable_index)
+            syllable_encoded_as_binary(syllable, phonemes)
           end
 
           private
