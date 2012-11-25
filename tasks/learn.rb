@@ -28,13 +28,13 @@ namespace :learn do
     
     haikus = haikus_rankings.map{|haiku_hash| Creative::Machine::Haiku.new(tokenise_haiku(haiku_hash.keys[0]))}
 
-    haiku_binary_poem = haikus.map { |haiku| poem_encoder.encode(haiku) }
+    encoded_haikus = haikus.map {|haiku| poem_encoder.encode(haiku)}
     
     index = 0 
-    data = haiku_binary_poem.map do |syllable| 
+    data = encoded_haikus.map do |encoded_syllables| 
       rank = haikus_rankings[index].values[0]
       index += 1
-      syllable.map {|syllable_binary| {syllable_binary => rank_to_array(rank)} }
+      encoded_syllables.map {|encoded_syllable| {|encoded_syllable => rank_to_array(rank)}}
     end
 
     tlearn.train(data, iterations = 2000, working_dir = 'data/weights/')
