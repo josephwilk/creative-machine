@@ -1,3 +1,4 @@
+module Creative::Machine
 namespace :learn do
   haikus_rankings = [
     {["on the cherry glass",  "even worn lost rain of all",      "and it looks not the"]    => 1},
@@ -22,11 +23,11 @@ namespace :learn do
   desc 'Train the weights for the neural network'
   task :start do
     require 'tlearn'
-    tlearn = TLearn::Run.new(Creative::Machine::PoetEngine::NeuralNetwork.config)
-    lexicon = Creative::Machine::PoetEngine::Lexicon.new
-    poem_encoder = Creative::Machine::PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
+    tlearn = TLearn::Run.new(PoetEngine::NeuralNetwork.config)
+    lexicon = PoetEngine::Lexicon.new
+    poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
     
-    haikus = haikus_rankings.map{|haiku_hash| Creative::Machine::Haiku.new(tokenise_haiku(haiku_hash.keys[0]))}
+    haikus = haikus_rankings.map{|haiku_hash| Haiku.new(tokenise_haiku(haiku_hash.keys[0]))}
 
     encoded_haikus = haikus.map {|haiku| poem_encoder.encode(haiku)}
     
@@ -39,4 +40,5 @@ namespace :learn do
 
     tlearn.train(data, iterations = 2000, working_dir = 'data/weights/')
   end
+end
 end
