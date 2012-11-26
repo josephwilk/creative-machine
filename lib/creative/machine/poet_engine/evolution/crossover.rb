@@ -3,11 +3,13 @@ module Creative
     module PoetEngine
       module Evolution
         class Crossover
+          class InvalidCrossover < Exception; end
+
           CROSSOVER_LIKELIHOOD = 40
         
           class << self
             def crossover(poem_1, poem_2)
-              raise Exception.new("Invalid Crossover: both poems empty") if poem_1.nil? && poem_2.nil?
+              raise InvalidCrossover.new("Both poems empty") if poem_1.nil? && poem_2.nil?
               return poem_1 if poem_2.nil?
 
               poem = [poem_1, poem_2][rand(2)]

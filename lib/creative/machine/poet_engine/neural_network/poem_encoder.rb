@@ -6,6 +6,8 @@ module Creative
       module NeuralNetwork
 
         class PoemEncoder
+          class PoemEncodingFailure < Exception; end
+
           BITS_FOR_LEXICON_INDEX = 11
           LEXICON_BITS = 0..BITS_FOR_LEXICON_INDEX-1
           
@@ -29,7 +31,7 @@ module Creative
           
           def binary_lexicon_word_code(word)
             index = @lexicon.index(word)
-            raise Exception.new("Cannot find word in lexicon: #{word}") unless index
+            raise PoemEncodingFailure.new("Cannot encode a word [#{word}] which is not in the lexicon") unless index
             index_binary = to_binary(index)
             pad(index_binary, BITS_FOR_LEXICON_INDEX)
           end
