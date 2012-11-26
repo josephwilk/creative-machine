@@ -28,7 +28,7 @@ namespace :learn do
         encoded_syllables.map {|encoded_syllable| {encoded_syllable => rank_to_array(haiku_hash["rank"])}}
       end
 
-      tlearn.train(haiku_data, iterations = 2000, working_dir = 'data/weights/')
+      tlearn.train(haiku_data, iterations = 1000000, working_dir = 'data/weights/')
     end
   end
 end
