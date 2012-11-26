@@ -9,7 +9,7 @@ module Creative
           BITS_FOR_LEXICON_INDEX = 11
           LEXICON_BITS = 0..BITS_FOR_LEXICON_INDEX-1
           
-          def initialize(lexicon)
+          def initialize(lexicon = Lexicon.new)
             @lexicon = lexicon
             @syllable_encoder = SyllableEncoder.new
           end
