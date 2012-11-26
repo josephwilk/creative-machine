@@ -6,10 +6,10 @@ module Creative
       module NeuralNetwork
 
         class PhonemeEncoder
-          ARTICULATIONS = %W{fricative vowel stop liquid nasal affricate aspirate}
+          ARTICULATIONS         = %W{fricative vowel stop liquid nasal affricate aspirate}
           PLACE_OF_ARTICULATION = %W{bilabial alveolar velar labiodental palatal interdental glottal}
-          HEIGHT = %W{high low-high mid low-mid low diphthong}
-          DEPTH = %W{back front central}
+          HEIGHT                = %W{high low-high mid low-mid low diphthong}
+          DEPTH                 = %W{back front central}
           
           BITS_FOR_PHONEME = 13
 
