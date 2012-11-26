@@ -20,8 +20,7 @@ namespace :learn do
 
     module Creative::Machine
       tlearn = TLearn::Run.new(PoetEngine::NeuralNetwork.config)
-      lexicon = PoetEngine::Lexicon.new
-      poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
+      poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new
     
       haiku_data = haikus_rankings.each_with_index.map do |haiku_hash, index|
         haiku = Haiku.new(tokenise_haiku(haiku_hash["haiku"]))
