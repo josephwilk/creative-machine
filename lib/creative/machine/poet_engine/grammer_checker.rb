@@ -9,9 +9,9 @@ module Creative
                                          %W{the with},
                                          %W{to to},
                                          %W{a a},
-                                         %W{the the}
-                                         %W{in in}
-                                         %W{of of}
+                                         %W{the the},
+                                         %W{in in},
+                                         %W{of of},
                                          %W{i i}]
 
         def self.invalid_particles?(current_word, new_word)
