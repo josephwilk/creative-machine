@@ -32,7 +32,7 @@ module NeuralNetwork
         end
       
         it "should encode the index of the word in the lexicon" do
-          encoded_word[PoemEncoder::LEXICON_BITS].should == [0] + binary_list(617)
+          encoded_word[PoemEncoder::LEXICON_BITS].should == [0] + binary_list(623)
         end
       
         def binary_list(number)
