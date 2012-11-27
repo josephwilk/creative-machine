@@ -3,6 +3,7 @@
 Creating Machines capable of creativity.
 
 [![Build Status](https://secure.travis-ci.org/josephwilk/creative-machine.png)](http://travis-ci.org/josephwilk/creative-machine)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/josephwilk/creative-machine)
 
 ### Making Art
 
