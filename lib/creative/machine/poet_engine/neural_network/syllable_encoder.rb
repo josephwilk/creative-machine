@@ -1,4 +1,5 @@
 require 'creative/machine/poet_engine/phonemes'
+require 'creative/machine/poet_engine/neural_network/poem_encoder'
 
 module Creative
   module Machine
