@@ -5,6 +5,7 @@ require 'creative/machine/poet_engine/rhymer'
 require 'creative/machine/poet_engine/evolution/mutator'
 require 'creative/machine/poet_engine/evolution/crossover'
 require 'creative/machine/poet_engine/lexicon'
+require 'creative/machine/poet_engine/grammer_checker'
 
 #Based on ideas from www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative

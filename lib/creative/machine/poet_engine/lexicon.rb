@@ -6,24 +6,6 @@ module Creative
         class NoPhonemesFound < Exception; end;
         
         DICTIONARY_FILE = File.dirname(__FILE__) + '/../../../../data/lookup_dictionary.json'
-        
-        
-  	    def self.invalid_particles?(current_word, new_word)
-  	      invalid_particles = ['to', 'a', 'the', 'in', 'of']
-
-  	      invalid_combinations = [%W{the of},
-  	                              %W{of in},
-  	                              %W{the in},
-  	                              %W{the with}]
-
-  	      if current_word == new_word && invalid_particles.include?(new_word)
-  	        true
-  	      elsif invalid_combinations.include?([current_word, new_word])
-  	        true
-  	      else
-  	        false
-  	      end
-  	    end
     
   	    def self.lookup(word)
   	      @data ||= JSON.parse(File.read(DICTIONARY_FILE))
@@ -65,7 +47,7 @@ module Creative
   	        syllable_count = Lexicon.no_syllables_in(word)
   	        next unless syllable_count
 
-  	        if ((total_syllables - Lexicon.no_syllables_in(word)) >= 0) && !Lexicon.invalid_particles?(poem_words[-1], word)
+  	        if ((total_syllables - Lexicon.no_syllables_in(word)) >= 0) && !GrammerChecker.invalid_particles?(poem_words[-1], word)
   	          poem_words << word
   	          total_syllables = total_syllables - Lexicon.no_syllables_in(word)
   	        end
