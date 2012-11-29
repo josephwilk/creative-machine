@@ -25,6 +25,7 @@ module Creative
             word_index = Kernel.rand(line.length)
             word = line[word_index]
 
+            new_word = nil
             loop do
               new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
               break if valid_mutation_word?(new_word, word_index, line)
@@ -36,14 +37,7 @@ module Creative
           end
 
           def valid_mutation_word?(new_word, word_index, line)
-            if word_index == 0
-              !GrammerChecker.invalid_particles?(new_word, line[word_index + 1])
-            elsif word_index == line.length - 1
-              !GrammerChecker.invalid_particles?(line[word_index - 1], new_word)
-            else
-              !GrammerChecker.invalid_particles?(new_word, line[word_index + 1]) &&
-              !GrammerChecker.invalid_particles?(line[word_index - 1], new_word)
-            end
+            GrammerChecker.valid_sentence?(new_word, word_index, line)
           end
           
           def line_mutation(poem)
