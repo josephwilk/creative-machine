@@ -25,9 +25,10 @@ module Creative
             word_index = Kernel.rand(line.length)
             word = line[word_index]
 
-            begin
+            loop do
               new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
-            end while !valid_mutation_word?(new_word, word_index, line)
+              break if valid_mutation_word?(new_word, word_index, line)
+            end
 
             line[word_index] = new_word
 
