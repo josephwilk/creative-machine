@@ -2,7 +2,7 @@ module Creative
   module Machine
     module PoetEngine
 
-      class GrammerChecker
+      module GrammerChecker
         INVALID_PARTICLE_COMBINATIONS = [%W{the of},
                                          %W{of in},
                                          %W{the in},
