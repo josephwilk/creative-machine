@@ -16,6 +16,8 @@ module Creative
               poem = crossover_lines(poem_1, poem_2) if crossover?
               poem
             end
+
+            private
           
             def crossover_lines(poem_1, poem_2)
               child_1 = poem_1
@@ -27,7 +29,6 @@ module Creative
               [child_1, child_2]
             end
 
-            private
             def crossover?
               rand(1..100) <= CROSSOVER_LIKELIHOOD ? true : false
             end

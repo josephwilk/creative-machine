@@ -16,6 +16,8 @@ module Creative
             poem
           end
 
+          private
+
           def word_mutation(poem)
             line_index = rand(poem.length)
             line = poem[line_index]
@@ -40,7 +42,6 @@ module Creative
             poem
           end
           
-          private
           def mutate?
             rand(1..100) <= MUTATION_LIKELIHOOD ? true : false
           end
