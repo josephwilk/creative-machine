@@ -1,3 +1,5 @@
+require 'creative/machine/poet_engine/grammer_checker'
+
 module Creative
   module Machine
     module PoetEngine
@@ -17,16 +19,30 @@ module Creative
           private
 
           def word_mutation(poem)
-            line_index = rand(poem.length)
+            line_index = Kernel.rand(poem.length)
             line = poem[line_index]
 
-            word_index = rand(line.length)
+            word_index = Kernel.rand(line.length)
             word = line[word_index]
 
-            new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
+            begin
+              new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
+            end while !valid_mutation_word?(new_word, word_index, line)
+
             line[word_index] = new_word
 
             poem
+          end
+
+          def valid_mutation_word?(new_word, word_index, line)
+            if word_index == 0
+              !GrammerChecker.invalid_particles?(new_word, line[word_index + 1])
+            elsif word_index == line.length - 1
+              !GrammerChecker.invalid_particles?(line[word_index - 1], new_word)
+            else
+              !GrammerChecker.invalid_particles?(new_word, line[word_index + 1]) &&
+              !GrammerChecker.invalid_particles?(line[word_index - 1], new_word)
+            end
           end
           
           def line_mutation(poem)
@@ -41,7 +57,7 @@ module Creative
           end
           
           def mutate?
-            rand(1..100) <= MUTATION_LIKELIHOOD ? true : false
+            Kernel.rand(1..100) <= MUTATION_LIKELIHOOD ? true : false
           end
 
         end
