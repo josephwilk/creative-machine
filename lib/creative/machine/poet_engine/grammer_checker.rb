@@ -17,13 +17,17 @@ module Creative
 
         def self.valid_sentence?(new_word, new_word_index, line)
           if new_word_index == 0
-            !GrammerChecker.invalid_particles?(new_word, line[new_word_index + 1])
+            GrammerChecker.valid_particles?(new_word, line[new_word_index + 1])
           elsif new_word_index == line.length - 1
-            !GrammerChecker.invalid_particles?(line[new_word_index - 1], new_word)
+            GrammerChecker.valid_particles?(line[new_word_index - 1], new_word)
           else
-            !GrammerChecker.invalid_particles?(new_word, line[new_word_index + 1]) &&
-            !GrammerChecker.invalid_particles?(line[new_word_index - 1], new_word)
+            GrammerChecker.valid_particles?(new_word, line[new_word_index + 1]) &&
+          GrammerChecker.valid_particles?(line[new_word_index - 1], new_word)
           end
+        end
+
+        def self.valid_particles?(current_word, new_word)
+          !GrammerChecker.invalid_particles?(current_word, new_word)
         end
 
         def self.invalid_particles?(current_word, new_word)
