@@ -43,7 +43,7 @@ module Creative
             new_line = @lexicon.pick_words(syllable_total)
 
             poem.replace_line(line_index, new_line)
-
+            
             poem
           end
           
