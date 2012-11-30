@@ -19,18 +19,14 @@ module Creative
           private
 
           def word_mutation(poem)
-            line_index = Kernel.rand(poem.length)
-            line = poem[line_index]
-
-            word_index = Kernel.rand(line.length)
-            word = line[word_index]
+            word_index, line_index, syllable_count = *poem.pick_random_word
 
             new_word = loop do
-              new_word = @lexicon.pick_word(Lexicon.no_syllables_in(word))
-              break(new_word) if valid_mutation_word?(new_word, word_index, line)
+              new_word = @lexicon.pick_word(syllable_count)
+              break(new_word) if valid_mutation_word?(new_word, word_index, poem.line(line_index))
             end
 
-            line[word_index] = new_word
+            poem.replace_word(word_index, line_index, new_word)
 
             poem
           end

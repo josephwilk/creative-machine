@@ -88,6 +88,23 @@ module Machine
     def to_s
       @lines.map{|line| line.join(" ")}.join("\n")
     end
+
+    def line(index)
+      @lines[index]
+    end
+
+    def replace_word(word_index, line_index, new_word)
+      @lines[line_index][word_index] = new_word
+    end
+
+    def pick_random_word
+      line_index = Kernel.rand(length)
+      line = @lines[line_index]
+
+      word_index = Kernel.rand(line.length)
+      return [word_index, line_index, PoetEngine::Lexicon.no_syllables_in(line[word_index])]
+    end
+
   end
   
   class Haiku < Poem
@@ -123,7 +140,7 @@ module Machine
     end
     
     def survivor?(poem, score)
-      score > SURVIVOR_SCORE_LIMIT
+      true
     end
   end
     
