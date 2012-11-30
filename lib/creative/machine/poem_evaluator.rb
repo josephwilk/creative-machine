@@ -13,8 +13,7 @@ module Machine
       score_poems(population).
       select{|(poem, score)| survivor?(poem, score)}.
       sort{|(poem_1, score_1), (poem_2, score_2)| score_1 <=> score_2}.
-      each{|(poem, score)| puts poem, score, "\n"}.
-      map{|(poem, score)| poem}
+      map{|(poem, score)| puts poem, score, "\n"; poem}
     end
     
     private
