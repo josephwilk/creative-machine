@@ -11,6 +11,7 @@ module Creative
             def crossover(poem_1, poem_2)
               raise InvalidCrossover.new("Both poems empty") if poem_1.nil? && poem_2.nil?
               return poem_1 if poem_2.nil?
+              return poem_2 if poem_1.nil?
 
               poem = [poem_1, poem_2][rand(2)]
               poem = crossover_lines(poem_1, poem_2) if crossover?
