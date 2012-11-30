@@ -19,7 +19,7 @@ module Machine
     
     def initialize
       @lexicon = PoetEngine::Lexicon.new
-      @evaluator = Evaluator.new(@lexicon)
+      @evaluator = PoemEvaluator.new(@lexicon)
       @mutator = PoetEngine::Evolution::Mutator.new(@lexicon)
       @crossover = PoetEngine::Evolution::Crossover
       @poems = nil
