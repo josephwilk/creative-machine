@@ -35,12 +35,20 @@ module Machine
       @lines[index]
     end
 
+    def replace_line(line_index, new_line)
+      @lines[line_index] = new_line
+    end
+
     def replace_word(word_index, line_index, new_word)
       @lines[line_index][word_index] = new_word
     end
 
+    def pick_random_line
+      Kernel.rand(length)
+    end
+
     def pick_random_word
-      line_index = Kernel.rand(length)
+      line_index = pick_random_line
       line = @lines[line_index]
 
       word_index = Kernel.rand(line.length)
