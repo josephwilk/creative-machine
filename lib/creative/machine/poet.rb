@@ -7,7 +7,9 @@ require 'creative/machine/poet_engine/evolution/crossover'
 require 'creative/machine/poet_engine/lexicon'
 require 'creative/machine/poet_engine/grammer_checker'
 
+require 'creative/machine/poem_evaluator'
 require 'creative/machine/haiku'
+
 
 #Based on ideas from www.ncbi.nlm.nih.gov/pubmed/18677746
 module Creative
@@ -63,36 +65,6 @@ module Machine
     
     def find_correct_stress_pattern(words)
       words
-    end
-  end
-  
-  class Evaluator
-    SURVIVOR_SCORE_LIMIT = 88
-
-    def initialize(lexicon)
-      @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
-      @neural_network = PoetEngine::NeuralNetwork
-    end
-    
-    def survivors(population)
-      score_poems(population).
-      select{|(poem, score)| survivor?(poem, score)}.
-      sort{|(poem_1, score_1), (poem_2, score_2)| score_1 <=> score_2}.
-      map{|(poem, score)| puts poem, score, "\n"; poem}
-    end
-    
-    private
-    def score_poems(population)
-      population.map do |poem|
-        inputs = @poem_encoder.encode(poem)
-        score = inputs.reduce(0){|score, input| score += @neural_network.score(input)}
-
-        [poem, score]
-      end
-    end
-    
-    def survivor?(poem, score)
-      true
     end
   end
     
