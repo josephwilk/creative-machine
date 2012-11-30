@@ -27,12 +27,9 @@ module Creative
         end
 
         def self.valid_particles?(current_word, new_word)
-          !GrammerChecker.invalid_particles?(current_word, new_word)
+          !INVALID_PARTICLE_COMBINATIONS.include?([current_word, new_word])
         end
 
-        def self.invalid_particles?(current_word, new_word)
-          INVALID_PARTICLE_COMBINATIONS.include?([current_word, new_word])
-        end
       end
 
     end
