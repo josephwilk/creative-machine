@@ -35,6 +35,10 @@ module Machine
       @lines[index]
     end
 
+    def syllables_for_line(line_index)
+      SYLLABLES_PER_LINE[line_index]
+    end
+
     def replace_line(line_index, new_line)
       @lines[line_index] = new_line
     end
