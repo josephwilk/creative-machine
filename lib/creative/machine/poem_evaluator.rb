@@ -2,7 +2,7 @@ module Creative
 module Machine
 
   class PoemEvaluator
-    SURVIVOR_SCORE_LIMIT = 88
+    SURVIVOR_SCORE_LIMIT = 50
 
     def initialize(lexicon)
       @poem_encoder = PoetEngine::NeuralNetwork::PoemEncoder.new(lexicon)
@@ -27,7 +27,7 @@ module Machine
     end
     
     def survivor?(poem, score)
-      true
+      score > SURVIVOR_SCORE_LIMIT
     end
   end
 
