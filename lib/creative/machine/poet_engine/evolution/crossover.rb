@@ -13,7 +13,7 @@ module Creative
               return poem_1 if poem_2.nil?
               return poem_2 if poem_1.nil?
 
-              poem = [poem_1, poem_2][rand(2)]
+              poem = [poem_1, poem_2].sample
               poem = crossover_lines(poem_1, poem_2) if crossover?
               poem
             end
