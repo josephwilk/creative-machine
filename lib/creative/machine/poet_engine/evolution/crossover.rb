@@ -20,12 +20,15 @@ module Creative
 
             private
           
-            def crossover_lines(poem_1, poem_2)
-              child_1 = poem_1
-              child_2 = poem_2
+            def crossover_lines(parent_poem_1, parent_poem_2)
+              child_1 = parent_poem_1
+              child_2 = parent_poem_2
             
-              child_1[0],  child_2[0] =  poem_2[0], poem_1[0]
-              child_1[-1], child_2[-1] = poem_2[-1], poem_1[-1]
+              child_1.replace_line(0, parent_poem_2.line(0))
+              child_2.replace_line(0, parent_poem_1.line(0))
+
+              child_1.replace_line(-1, parent_poem_2.line(-1))
+              child_1.replace_line(-1, parent_poem_1.line(-1))
             
               [child_1, child_2]
             end
