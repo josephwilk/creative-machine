@@ -56,7 +56,8 @@ module Machine
       line = @lines[line_index]
 
       word_index = Kernel.rand(line.length)
-      return [word_index, line_index, PoetEngine::Lexicon.no_syllables_in(line[word_index])]
+
+      [line[word_index], word_index, line_index]
     end
 
   end
