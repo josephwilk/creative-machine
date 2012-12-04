@@ -37,7 +37,7 @@ module Creative
           end
           
           def line_mutation(poem)
-            line_index = poem.pick_random_line
+            _, line_index = *poem.pick_random_line
 
             syllable_total = poem.syllables_for_line(line_index)
 

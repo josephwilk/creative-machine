@@ -48,13 +48,14 @@ module Machine
     end
 
     def pick_random_line
-      Kernel.rand(length)
+      line_index = Kernel.rand(length)
+      line = @lines[line_index]
+
+      [line, line_index]
     end
 
     def pick_random_word
-      line_index = pick_random_line
-      line = @lines[line_index]
-
+      line, line_index = *pick_random_line
       word_index = Kernel.rand(line.length)
 
       [line[word_index], word_index, line_index]
