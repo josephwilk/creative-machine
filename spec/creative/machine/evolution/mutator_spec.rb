@@ -27,7 +27,7 @@ module Evolution
       
           mutator.mutate(poem)
           
-          poem[0].should == ["i", "joe", "cherry", "glass"]
+          poem.line(0).should == ["i", "joe", "cherry", "glass"]
           
         end
       end

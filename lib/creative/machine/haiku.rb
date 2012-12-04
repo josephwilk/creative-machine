@@ -11,14 +11,6 @@ module Machine
       @lines = lines
     end
     
-    def [](index)
-      @lines[index]
-    end
-
-    def []=(index, value)
-      @lines[index] = value
-    end
-    
     def length
       @lines.length
     end
