@@ -1,5 +1,6 @@
 require 'creative/machine/poet_engine/phonemes'
 require 'creative/machine/poet_engine/neural_network/poem_encoder'
+require 'creative/machine/poet_engine/neural_network/binary_helper'
 
 module Creative
   module Machine
@@ -7,6 +8,8 @@ module Creative
       module NeuralNetwork
 
         class SyllableEncoder
+          include BinaryHelper
+
           BITS_FOR_SYLLABLES = 66
           SYLLABLE_BITS = PoemEncoder::BITS_FOR_LEXICON_INDEX+1..BITS_FOR_SYLLABLES
           
@@ -94,12 +97,7 @@ module Creative
             vowels = %W{a e i o u}
             vowels.include?(phoneme[0].downcase)
           end
-          
-          def pad(input, size)
-            pad_length = size - input.length
-            pad_length > 0 ? ([0] * pad_length) + input : input
-          end
-          
+
         end
         
       end

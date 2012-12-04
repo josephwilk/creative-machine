@@ -1,4 +1,5 @@
 require 'creative/machine/poet_engine/phonemes'
+require 'creative/machine/poet_engine/neural_network/binary_helper'
 
 module Creative
   module Machine
@@ -6,6 +7,8 @@ module Creative
       module NeuralNetwork
 
         class PoemEncoder
+          include BinaryHelper
+
           class PoemEncodingFailure < Exception; end
 
           BITS_FOR_LEXICON_INDEX = 11
@@ -34,15 +37,6 @@ module Creative
             raise PoemEncodingFailure.new("Cannot encode a word [#{word}] which is not in the lexicon") unless index
             index_binary = to_binary(index)
             pad(index_binary, BITS_FOR_LEXICON_INDEX)
-          end
-          
-          def pad(input, size)
-            pad_length = size - input.length
-            pad_length > 0 ? ([0] * pad_length) + input : input
-          end
-          
-          def to_binary(number)
-            number.to_i.to_s(2).split('').map(&:to_i)
           end
 
         end

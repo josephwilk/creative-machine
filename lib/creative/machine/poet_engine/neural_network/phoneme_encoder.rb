@@ -1,4 +1,5 @@
 require 'creative/machine/poet_engine/phonemes'
+require 'creative/machine/poet_engine/neural_network/binary_helper'
 
 module Creative
   module Machine
@@ -6,6 +7,8 @@ module Creative
       module NeuralNetwork
 
         class PhonemeEncoder
+          include BinaryHelper
+
           ARTICULATIONS         = %W{fricative vowel stop liquid nasal affricate aspirate}
           PLACE_OF_ARTICULATION = %W{bilabial alveolar velar labiodental palatal interdental glottal}
           HEIGHT                = %W{high low-high mid low-mid low diphthong}
@@ -63,15 +66,6 @@ module Creative
 
             index = ARTICULATIONS.rindex(articulation) + 1
             pad(to_binary(index), 3)
-          end
-          
-          def pad(input, size)
-            pad_length = size - input.length
-            pad_length > 0 ? ([0] * pad_length) + input : input
-          end
-          
-          def to_binary(number)
-            number.to_i.to_s(2).split('').map(&:to_i)
           end
 
         end
