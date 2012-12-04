@@ -38,6 +38,11 @@ module Creative
           @data.keys.sort.index(word)
         end
     
+        def pick_word_with_same_number_of_syllables_as(word)
+          syllable_count = Lexicon.no_syllables_in(word)
+          pick_word(syllable_count)
+        end
+
   	    def pick_words(total_syllables = 10)
   	      poem_words = []
   	      while total_syllables > 0

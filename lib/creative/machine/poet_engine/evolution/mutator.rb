@@ -21,10 +21,9 @@ module Creative
 
           def word_mutation(poem)
             word, word_index, line_index = *poem.pick_random_word
-            syllable_count = PoetEngine::Lexicon.no_syllables_in(word)
 
             new_word = loop do
-              new_word = @lexicon.pick_word(syllable_count)
+              new_word = @lexicon.pick_word_with_same_number_of_syllables_as(word)
               break(new_word) if valid_mutation_word?(new_word, word_index, poem.line(line_index))
             end
 
