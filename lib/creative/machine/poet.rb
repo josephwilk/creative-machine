@@ -15,7 +15,7 @@ require 'creative/machine/haiku'
 module Creative
 module Machine
   class Poet
-    POPULATION_SIZE = 1000
+    POPULATION_SIZE = 10000
     
     def initialize
       @lexicon = PoetEngine::Lexicon.new
