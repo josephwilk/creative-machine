@@ -26,8 +26,11 @@ module Machine
     end
     
     def evolve(generations = 100)
-      generations.times do 
+      generations.times do |generation|
         @poems ||= randomly_generate_poems
+
+        puts "Generation #{generation}: #{@poems.count} poems"
+
         @poems = @evaluator.survivors(@poems)
         @poems = mutation(@poems)
         @poems = crossover(@poems)
