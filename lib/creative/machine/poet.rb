@@ -34,8 +34,10 @@ module Machine
         @poems = @evaluator.survivors(@poems)
         @poems = mutation(@poems)
         @poems = crossover(@poems)
+
+        break if @poems.length == 0
       end
-      
+
       @poems.map{|poem| poem.to_s}
     end
 
