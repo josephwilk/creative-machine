@@ -118,6 +118,8 @@ namespace :lexicon do
 
     puts File.expand_path(File.join(tmpdir, 'lookup.json'))
 
+    FileUtils.copy(File.join(tmpdir, 'lookup.json'),
+                   File.join(File.dirname(__FILE__) + '/../data/lookup.json'))
     Rake::Task['lexicon:format_lookup'].invoke
   end
   
@@ -152,7 +154,7 @@ namespace :lexicon do
   
   desc "format json line segments into a single json hash"
   task :format_lookup do
-    data = File.read(File.dirname(__FILE__) + '/../tmp/lookup.json')
+    data = File.read(File.dirname(__FILE__) + '/../data/lookup.json')
     lines = data.split("\n")
     result = lines.reduce({}) do |result, line|
       word_data = JSON.parse(line)
