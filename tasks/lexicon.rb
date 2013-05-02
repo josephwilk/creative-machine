@@ -38,10 +38,6 @@ module LexiconBuilder
 
       pronouncations = correct_any_bad_pronounications(pronouncations, word_with_syllables_seperated)
 
-      if word_with_syllables_seperated.count == 1 && phonemes
-        phonemes = [phonemes]
-      end
-      
       {:word => word,
        :syllables => word_with_syllables_seperated,
        :pronouncations => pronouncations,
@@ -100,8 +96,8 @@ namespace :lexicon do
       next unless data
 
       log = if !data[:phonemes]
-        error_log        
-      elsif (data[:syllables].join('')).length != word.length
+        error_log
+      elsif (data[:syllables].join('')).length != word.length || data[:phonemes].first.class != Array
         moderation_log
       else
         word_log
