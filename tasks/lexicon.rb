@@ -38,10 +38,6 @@ module LexiconBuilder
 
       pronouncations = correct_any_bad_pronounications(pronouncations, word_with_syllables_seperated)
 
-      if word_with_syllables_seperated.count == 1 && phonemes
-        phonemes = [phonemes]
-      end
-      
       {:word => word,
        :syllables => word_with_syllables_seperated,
        :pronouncations => pronouncations,
@@ -84,21 +80,24 @@ end
 
 namespace :lexicon do  
   desc "map words to syllables/pronuciation/emphasis"
-  task :build => [:format_lookup] do
-    error_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_fails.json', 'w')
-    moderation_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup_moderation.json', 'w')
-    word_log = File.open(File.dirname(__FILE__) + '/../tmp/lookup.json', 'w')
+  task :build do
+    tmpdir = File.join File.dirname(__FILE__), '..', 'tmp'
+    Dir.mkdir tmpdir unless Dir.exists? tmpdir
+    error_log = File.open File.join(tmpdir, 'lookup_fails.json'), 'w'
+    moderation_log = File.open File.join(tmpdir, 'lookup_moderation.json'), 'w'
+    word_log = File.open File.join(tmpdir, 'lookup.json'), 'w'
 
     seen = {}
 
     LexiconBuilder.haiku_words.each do |word|
+      print '.'
+      next if seen[word]
       data = LexiconBuilder.lookup(word)
       next unless data
-      next if seen[word]
-      
+
       log = if !data[:phonemes]
-        error_log        
-      elsif (data[:syllables].join('')).length != word.length
+        error_log
+      elsif (data[:syllables].join('')).length != word.length || data[:phonemes].first.class != Array
         moderation_log
       else
         word_log
@@ -109,10 +108,15 @@ namespace :lexicon do
 
       seen[word] = true
     end
-    
+    puts
+
     [word_log, error_log, moderation_log].map(&:close)
 
-    puts File.expand_path(File.dirname(__FILE__) + '/../') + '/tmp/lookup.json'
+    puts File.expand_path(File.join(tmpdir, 'lookup.json'))
+
+    FileUtils.copy(File.join(tmpdir, 'lookup.json'),
+                   File.join(File.dirname(__FILE__) + '/../data/lookup.json'))
+    Rake::Task['lexicon:format_lookup'].invoke
   end
   
   desc "process moderation"
@@ -146,7 +150,7 @@ namespace :lexicon do
   
   desc "format json line segments into a single json hash"
   task :format_lookup do
-    data = File.read(File.dirname(__FILE__) + '/../tmp/lookup.json')
+    data = File.read(File.dirname(__FILE__) + '/../data/lookup.json')
     lines = data.split("\n")
     result = lines.reduce({}) do |result, line|
       word_data = JSON.parse(line)
